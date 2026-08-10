@@ -199,11 +199,15 @@
 function toggleLang() {
   var body = document.body;
   var btn = document.getElementById('langBtn');
-  if (body.classList.contains('lang-zh')) {
-    body.classList.remove('lang-zh'); body.classList.add('lang-en'); btn.textContent = '中';
-  } else {
-    body.classList.remove('lang-en'); body.classList.add('lang-zh'); btn.textContent = 'EN';
-  }
+  body.classList.add('lang-fade');
+  setTimeout(function() {
+    if (body.classList.contains('lang-zh')) {
+      body.classList.remove('lang-zh'); body.classList.add('lang-en'); btn.textContent = '中';
+    } else {
+      body.classList.remove('lang-en'); body.classList.add('lang-zh'); btn.textContent = 'EN';
+    }
+    body.classList.remove('lang-fade');
+  }, 120);
 }
 </script>
 </body>

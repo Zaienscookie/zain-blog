@@ -266,15 +266,14 @@ a:hover { color: var(--accent-hover); }
 .post-title .en { font-size: 15px; font-weight: 300; color: var(--text-muted); }
 
 /* ═══ 中英文切换 ═══ */
-.zh, .en { transition: opacity .3s ease, visibility .3s ease; }
-body.lang-en .zh,
-body.lang-zh .en {
-  opacity: 0;
-  visibility: hidden;
-  display: inline !important;
+body.lang-en .zh { display: none !important; }
+body.lang-zh .en { display: none !important; }
+body.lang-fade { animation: langFade .25s ease; }
+@keyframes langFade {
+  0%   { opacity: 1; }
+  40%  { opacity: .6; }
+  100% { opacity: 1; }
 }
-body.lang-en .en,
-body.lang-zh .zh { opacity: 1; visibility: visible; }
 
 .lang-bar { display: flex; align-items: center; justify-content: center; margin-top: 22px; }
 .lang-btn {
