@@ -541,9 +541,10 @@ body.lang-fade { animation: langFade .25s ease; }
 /* 关于页 - 介绍卡片 */
 .bio-card { padding: 0 0 8px; }
 .bio-card p { margin: 6px 0; line-height: 1.7; }
-.bio-bonjour { margin-top: 12px; }
-.bio-bonjour a { color: var(--accent); font-size: 14px; }
-.bio-bonjour a:hover { text-decoration: underline; }
+.bio-contact { margin-top: 14px; display: flex; gap: 20px; flex-wrap: wrap; }
+.bio-contact a { color: var(--accent); font-size: 14px; }
+.bio-contact a:hover { text-decoration: underline; }
+.bio-contact i { width: 16px; text-align: center; margin-right: 4px; }
 
 /* 画廊网格 - 拼贴瀑布流 */
 .gallery-grid {
