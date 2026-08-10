@@ -263,11 +263,12 @@ a:hover { color: var(--accent-hover); }
 .stat .s-label { font-size: 12px; color: var(--text-muted); }
 
 /* ═══ 标题英文小字 ═══ */
-.post-title .en { font-size: 15px; font-weight: 300; color: var(--text-muted); }
+.post-title .en { font-size: 15px; font-weight: inherit; color: var(--text-muted); }
 
 /* ═══ 中英文切换 ═══ */
 body.lang-en .zh { display: none !important; }
 body.lang-zh .en { display: none !important; }
+.zh, .en { font-weight: inherit; }
 body.lang-fade { animation: langFade .25s ease; }
 @keyframes langFade {
   0%   { opacity: 1; }
@@ -312,6 +313,53 @@ body.lang-fade { animation: langFade .25s ease; }
 .proj-tags span { font-size: 11px; padding: 1px 8px; border-radius: 2px; background: #333; color: var(--text); }
 .proj-link { display: inline-block; margin-top: 10px; font-size: 12px; color: var(--text); }
 .proj-link:hover { color: var(--text-strong); }
+
+/* ═══ 项目卡片（归档页） ═══ */
+.proj-card {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--bg-card);
+  padding: 16px;
+  transition: .2s ease;
+  animation: fadeUp .5s ease both;
+  display: flex;
+  flex-direction: column;
+}
+.proj-card:hover { border-color: #555; transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+.proj-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--text-muted);
+}
+.proj-meta .pj-github {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1;
+  transition: .15s ease;
+}
+.proj-meta .pj-github:hover { color: var(--text-strong); }
+
+/* ═══ 语言标签 · GitHub 语言色 ═══ */
+.proj-lang { display: inline-flex; align-items: center; gap: 6px; }
+.proj-lang::before { content: ""; width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.proj-lang.lang-python::before { background: #3572A5; }
+.proj-lang.lang-go::before { background: #00ADD8; }
+.proj-lang.lang-js::before,
+.proj-lang.lang-javascript::before { background: #f1e05a; }
+.proj-lang.lang-ts::before,
+.proj-lang.lang-typescript::before { background: #3178c6; }
+.proj-lang.lang-html::before { background: #e34c26; }
+.proj-lang.lang-css::before { background: #563d7c; }
+.proj-lang.lang-shell::before,
+.proj-lang.lang-bash::before { background: #89e051; }
+.proj-lang.lang-c::before { background: #555555; }
+.proj-lang.lang-cpp::before { background: #f34b7d; }
+.proj-lang.lang-dockerfile::before { background: #384d54; }
+.proj-lang.lang-none::before { background: #8b949e; }
 
 /* ═══ 动态时间线 ═══ */
 .timeline { position: relative; padding-left: 22px; }
