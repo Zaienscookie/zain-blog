@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#222">
+<title>About · zain</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="lang-en">
+<div class="container">
+
+  <!-- Left Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <div class="avatar-wrap"><div class="avatar-initial">z</div></div>
+      <div class="site-author-name">zain</div>
+      <div class="site-description">Cloud / Full-Stack</div>
+      <div class="lang-bar">
+        <button class="lang-btn" onclick="toggleLang()" id="langBtn">中</button>
+      </div>
+      <div class="social">
+        <a href="https://github.com/Zaienscookie" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://github.com/Zaienscookie?tab=repositories" target="_blank" title="Repos"><i class="fas fa-code-branch"></i></a>
+      </div>
+      <div class="sidebar-menu">
+        <a href="/blog/"><span class="m-icon">/</span> <span class="zh">首页</span><span class="en">Home</span></a>
+        <a href="/blog/posts/"><span class="m-icon">*</span> <span class="zh">项目</span><span class="en">Projects</span></a>
+        <a href="/blog/about.html" class="active"><span class="m-icon">i</span> <span class="zh">关于</span><span class="en">About</span></a>
+        <a href="/"><span class="m-icon">~</span> WebHub</a>
+      </div>
+      <div class="site-visitors"><i class="fa fa-eye"></i> 14 repos / 8 plugins</div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <article class="post-block">
+      <header class="post-header">
+        <h2 class="post-title"><span class="zh">关于我</span><span class="en">About Me</span></h2>
+        <div class="post-meta"><span>2026-08-10</span><span class="sep">|</span><span class="cat">#about</span></div>
+      </header>
+      <div class="post-body">
+
+        <p><span class="zh">云计算方向、全栈开发者。喜欢把想法变成跑在服务器上的服务，从 nginx 网关到 AstrBot 插件，从 SSH 集群到容器化部署。</span><span class="en">Cloud-first full-stack developer. I turn ideas into running services — from nginx gateways to AstrBot plugins, from SSH clusters to containerized deployments.</span></p>
+
+        <h3><span class="zh">技能栈</span><span class="en">Tech Stack</span></h3>
+        <div class="stack-grid">
+          <div class="stack-card"><div class="st-name">Cloud</div><div class="st-list"><span>Docker</span><span>nginx</span><span>Linux</span><span>SSH</span><span>CI/CD</span></div></div>
+          <div class="stack-card"><div class="st-name">Backend</div><div class="st-list"><span>Python</span><span>Node.js</span><span>REST API</span></div></div>
+          <div class="stack-card"><div class="st-name">Frontend</div><div class="st-list"><span>HTML/CSS</span><span>JavaScript</span><span>TailwindCSS</span></div></div>
+          <div class="stack-card"><div class="st-name">Database</div><div class="st-list"><span>MySQL</span><span>SQLite</span><span>Redis</span></div></div>
+          <div class="stack-card"><div class="st-name">AI / Bot</div><div class="st-list"><span>AstrBot</span><span>OneBot</span><span>Ollama</span><span>LLM</span></div></div>
+          <div class="stack-card"><div class="st-name">Tools</div><div class="st-list"><span>Git</span><span>GitHub</span><span>curl</span><span>systemd</span></div></div>
+        </div>
+
+        <h3><span class="zh">项目</span><span class="en">Projects</span></h3>
+        <div class="proj-item">
+          <div class="proj-head"><span class="proj-name">Memoir 回忆录</span><span class="proj-lang">Python</span></div>
+          <p class="proj-desc"><span class="zh">AstrBot 长期记忆库插件，指令存取记忆，独立 WebUI 管理面板。</span><span class="en">AstrBot long-term memory plugin. Store &amp; retrieve memories, standalone WebUI panel.</span></p>
+          <a class="proj-link" href="https://github.com/Zaienscookie/astrbot_plugin_memoir" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+        <div class="proj-item">
+          <div class="proj-head"><span class="proj-name">Sentinel 哨兵</span><span class="proj-lang">Python</span></div>
+          <p class="proj-desc"><span class="zh">服务器集群哨兵，SSH 多机管理，云端运维。</span><span class="en">Server cluster sentinel. SSH multi-machine management for cloud ops.</span></p>
+          <a class="proj-link" href="https://github.com/Zaienscookie/sentinel" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+        <div class="proj-item">
+          <div class="proj-head"><span class="proj-name">ZeroBot</span><span class="proj-lang">-</span></div>
+          <p class="proj-desc"><span class="zh">基于 OneBot 协议的机器人 开发框架。</span><span class="en">Bot framework based on the OneBot protocol.</span></p>
+          <a class="proj-link" href="https://github.com/Zaienscookie/ZeroBot" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+
+        <a href="/blog/posts/" class="read-more"><span class="zh">查看全部项目</span><span class="en">All projects</span> &raquo;</a>
+      </div>
+    </article>
+
+    <div class="footer">
+      <span>&copy; 2026 &middot; zain <i class="fas fa-heart" style="color:var(--text-muted);font-size:12px;"></i> Powered by pure HTML/CSS</span>
+    </div>
+
+  </main>
+
+  <!-- Right Sidebar -->
+  <aside class="right-bar" id="rightBar">
+
+    <div class="wname">zain</div>
+      <div class="wdesc"><span class="zh">云计算 · 全栈</span><span class="en">Cloud · Full-Stack</span></div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-title"><span class="zh">分类</span><span class="en">Categories</span></div>
+      <ul>
+        <li><a href="javascript:void(0)">Cloud</a> <span class="count">4</span></li>
+        <li><a href="javascript:void(0)">AstrBot</a> <span class="count">8</span></li>
+        <li><a href="javascript:void(0)">Python</a> <span class="count">9</span></li>
+        <li><a href="javascript:void(0)">Frontend</a> <span class="count">2</span></li>
+      </ul>
+    </div>
+
+    <div class="widget">
+      <div class="widget-title"><span class="zh">标签</span><span class="en">Tags</span></div>
+      <div class="tag-cloud">
+        <a href="javascript:void(0)">Docker</a>
+        <a href="javascript:void(0)">nginx</a>
+        <a href="javascript:void(0)">SSH</a>
+        <a href="javascript:void(0)">Linux</a>
+        <a href="javascript:void(0)">Python</a>
+        <a href="javascript:void(0)">AstrBot</a>
+        <a href="javascript:void(0)">OneBot</a>
+        <a href="javascript:void(0)">LLM</a>
+        <a href="javascript:void(0)">API</a>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-title"><span class="zh">链接</span><span class="en">Links</span></div>
+      <div class="link-list">
+        <a href="https://github.com/Zaienscookie" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://github.com/Zaienscookie?tab=repositories" target="_blank"><i class="fas fa-code-branch"></i> Repos</a>
+        <a href="/"><i class="fas fa-globe"></i> WebHub</a>
+      </div>
+    </div>
+
+  </aside>
+
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
