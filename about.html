@@ -82,13 +82,7 @@
     
 
   
-    <!-- 图片查看器 -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-      <span class="lightbox-close" onclick="event.stopPropagation();closeLightbox()">&times;</span>
-      <div class="lightbox-img-wrap" onclick="event.stopPropagation()">
-        <img id="lightbox-img" src="" alt="">
-      </div>
-      <div class="lightbox-nav" onclick="event.stopPropagation()">
+    <div class="lightbox-nav" onclick="event.stopPropagation()">
         <button class="lb-btn" onclick="navLightbox(-1)">&#10094; 上一张</button>
         <button class="lb-btn" onclick="navLightbox(1)">下一张 &#10095;</button>
       </div>
@@ -242,3 +236,17 @@ document.addEventListener('keydown', function(e) {
 });
 
 </script>
+
+    <!-- 图片查看器 -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+      <span class="lightbox-close" onclick="event.stopPropagation();closeLightbox()">&times;</span>
+      <div class="lightbox-img-wrap" onclick="event.stopPropagation()">
+        <img id="lightbox-img" src="" alt="">
+      </div>
+      <div class="lightbox-nav" onclick="event.stopPropagation()">
+        <button class="lb-btn" onclick="navLightbox(-1)">&#10094; 上一张</button>
+        <button class="lb-btn" onclick="navLightbox(1)">下一张 &#10095;</button>
+      </div>
+    </div>
+</body>
+</html>
