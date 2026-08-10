@@ -162,6 +162,23 @@ function toggleLang() {
   }
 })();
 
+function flipAvatar() {
+  var s = document.getElementById("avatarStack");
+  s.classList.toggle("flipped");
+  localStorage.setItem("avatarFlipped", s.classList.contains("flipped") ? "1" : "0");
+}
+
+// 恢复翻牌状态
+(function() {
+  var s = document.getElementById("avatarStack");
+  if (s && localStorage.getItem("avatarFlipped") === "1") {
+    s.classList.add("flipped");
+  }
+})();
+
+</script>
+
+<script>
 // ===== 画廊 & 灯箱 =====
 var galleryList = [
   {t:'img/gallery/1_thumb.jpg', f:'img/gallery/1.jpg', c:'span2'},
@@ -223,3 +240,5 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowLeft') navLightbox(-1);
   if (e.key === 'Escape') closeLightbox();
 });
+
+</script>

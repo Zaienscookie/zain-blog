@@ -208,8 +208,18 @@
 <script>
 
 function flipAvatar() {
-  document.getElementById('avatarStack').classList.toggle('flipped');
+  var s = document.getElementById('avatarStack');
+  s.classList.toggle('flipped');
+  localStorage.setItem('avatarFlipped', s.classList.contains('flipped') ? '1' : '0');
 }
+
+// 恢复翻牌状态
+(function() {
+  var s = document.getElementById('avatarStack');
+  if (s && localStorage.getItem('avatarFlipped') === '1') {
+    s.classList.add('flipped');
+  }
+})();
 function toggleLang() {
   var body = document.body;
   var btn = document.getElementById('langBtn');

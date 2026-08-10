@@ -478,7 +478,7 @@ body.lang-fade { animation: langFade .25s ease; }
   display: block;
 }
 
-/* 翻牌头像 */
+/* 翻牌头像（正方形圆角） */
 .avatar-stack {
   width: 96px; height: 96px;
   margin: 0 auto 16px;
@@ -489,7 +489,7 @@ body.lang-fade { animation: langFade .25s ease; }
 .avatar-card {
   position: absolute;
   width: 100%; height: 100%;
-  border-radius: 50%;
+  border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--line);
   backface-visibility: hidden;
@@ -516,6 +516,7 @@ body.lang-fade { animation: langFade .25s ease; }
 
 @media (max-width: 768px) {
   .avatar-stack { width: 72px; height: 72px; }
+  .avatar-card { border-radius: 10px; }
 }
 
 /* 关于页 - 介绍卡片 */
@@ -577,13 +578,16 @@ body.lang-fade { animation: langFade .25s ease; }
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 92vw;
-  max-height: 92vh;
+  max-width: 90vw;
+  max-height: 85vh;
 }
 .lightbox-img-wrap img {
-  max-width: 100%;
-  max-height: 90vh;
-  border-radius: 4px;
+  max-width: 90vw;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
   box-shadow: 0 8px 40px rgba(0,0,0,.6);
 }
 .lightbox-close {
