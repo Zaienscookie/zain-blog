@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body>
+<body class="lang-zh">
 <div class="container">
 
   <!-- Left Sidebar -->
@@ -17,15 +17,18 @@
       <div class="avatar-wrap"><div class="avatar-initial">z</div></div>
       <div class="site-author-name">zain</div>
       <div class="site-description">Cloud / Full-Stack</div>
+            <div class="lang-bar">
+        <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
+      </div>
       <div class="social">
         <a href="https://github.com/Zaienscookie" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
         <a href="https://github.com/Zaienscookie?tab=repositories" target="_blank" title="Repos"><i class="fas fa-code-branch"></i></a>
       </div>
       <div class="sidebar-menu">
-        <a href="/blog/"><span class="m-icon">/</span> Home</a>
-        <a href="/blog/posts/" class="active"><span class="m-icon">*</span> Projects</a>
-        <a href="/blog/about.html"><span class="m-icon">i</span> About</a>
-        <a href="/"><span class="m-icon">~</span> WebHub</a>
+        <a href="/blog/"><span class="m-icon">/</span> <span class="zh">首页</span><span class="en">Home</span></a>
+        <a href="/blog/posts/" class="active"><span class="m-icon">*</span> <span class="zh">项目</span><span class="en">Projects</span></a>
+        <a href="/blog/about.html"><span class="m-icon">i</span> <span class="zh">关于</span><span class="en">About</span></a>
+        <a href="/"><span class="m-icon">~</span> <span class="zh">WebHub</span></a>
       </div>
       <div class="site-visitors"><i class="fa fa-eye"></i> 14 repos / 8 plugins</div>
     </div>
@@ -36,7 +39,7 @@
 
     <article class="post-block">
       <header class="post-header">
-        <h2 class="post-title">All Projects</h2>
+        <h2 class="post-title"><span class="zh">全部项目</span><span class="en">All Projects</span></h2>
         <div class="post-meta"><span>2026-08-10</span><span class="sep">|</span><span class="cat">#GitHub</span></div>
       </header>
       <div class="post-body">
@@ -69,13 +72,13 @@
 
           <div class="proj-card">
             <div class="proj-head"><span class="proj-name">Sentinel</span><span class="proj-lang">Python</span></div>
-            <p class="proj-desc">Server cluster sentinel. SSH multi-machine cloud ops.</p>
+            <p class="proj-desc"><span class="zh">台服务器</span><span class="en">Server</span> cluster sentinel. SSH multi-machine cloud ops.</p>
             <div class="proj-meta"><span>#Cloud</span><a href="https://github.com/Zaienscookie/sentinel" class="pj-github" target="_blank"><i class="fab fa-github"></i></a></div>
           </div>
 
           <div class="proj-card">
             <div class="proj-head"><span class="proj-name">ZeroBot</span><span class="proj-lang">-</span></div>
-            <p class="proj-desc">Bot framework based on the OneBot protocol.</p>
+            <p class="proj-desc"><span class="zh">基于 OneBot 协议的机器人开发框架。</span><span class="en">Bot framework based on the OneBot protocol.</span></p>
             <div class="proj-meta"><span>#Go</span><a href="https://github.com/Zaienscookie/ZeroBot" class="pj-github" target="_blank"><i class="fab fa-github"></i></a></div>
           </div>
 
@@ -124,7 +127,7 @@
   <aside class="right-bar" id="rightBar">
 
     <div class="widget">
-      <div class="widget-title">Categories</div>
+      <div class="widget-title"><span class="zh">分类</span><span class="en">Categories</span></div>
       <ul>
         <li><span class="cat-item">Cloud</span> <span class="count">4</span></li>
         <li><span class="cat-item">AstrBot</span> <span class="count">8</span></li>
@@ -135,23 +138,23 @@
     </div>
 
     <div class="widget">
-      <div class="widget-title">Tags</div>
+      <div class="widget-title"><span class="zh">标签</span><span class="en">Tags</span></div>
       <div class="tag-cloud">
-        <span class="cat-item">Docker</a>
-        <span class="cat-item">nginx</a>
-        <span class="cat-item">SSH</a>
-        <span class="cat-item">Linux</a>
-        <span class="cat-item">Python</a>
+        <span class="tag-item">Docker</span>
+        <span class="tag-item">nginx</span>
+        <span class="tag-item">SSH</span>
+        <span class="tag-item">Linux</span>
+        <span class="tag-item">Python</span>
         
-        <span class="cat-item">AstrBot</a>
-        <span class="cat-item">OneBot</a>
-        <span class="cat-item">LLM</a>
-        <span class="cat-item">API</a>
+        <span class="tag-item">AstrBot</span>
+        <span class="tag-item">OneBot</span>
+        <span class="tag-item">LLM</span>
+        <span class="tag-item">API</span>
       </div>
     </div>
 
     <div class="widget">
-      <div class="widget-title">Links</div>
+      <div class="widget-title"><span class="zh">链接</span><span class="en">Links</span></div>
       <div class="link-list">
         <a href="https://github.com/Zaienscookie" target="_blank"><i class="fab fa-github"></i> GitHub</a>
         <a href="https://github.com/Zaienscookie?tab=repositories" target="_blank"><i class="fas fa-code-branch"></i> Repos</a>
@@ -162,5 +165,16 @@
   </aside>
 
 </div>
+<script>
+function toggleLang() {
+  var body = document.body;
+  var btn = document.getElementById('langBtn');
+  if (body.classList.contains('lang-zh')) {
+    body.classList.remove('lang-zh'); body.classList.add('lang-en'); btn.textContent = '中';
+  } else {
+    body.classList.remove('lang-en'); body.classList.add('lang-zh'); btn.textContent = 'EN';
+  }
+}
+</script>
 </body>
 </html>
