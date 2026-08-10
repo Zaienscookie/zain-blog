@@ -45,38 +45,41 @@
       </header>
       <div class="post-body">
 
-        <p><span class="zh">云计算方向、全栈开发者。喜欢把想法变成跑在服务器上的服务，从 nginx 网关到 AstrBot 插件，从 SSH 集群到容器化部署。</span><span class="en">Cloud-first full-stack developer. I turn ideas into running services — from nginx gateways to AstrBot plugins, from SSH clusters to containerized deployments.</span></p>
+        <div class="bio-card">
+          <p><span class="zh">一个来自河北、在天津上学的大一新生 🐯</span><span class="en">A freshman from Hebei, studying in Tianjin 🐯</span></p>
+          <p><span class="zh">表面是理工科学生，其实是只沉迷极客技术的瑁猫（东北虎 ver.）</span><span class="en">CS student by day, geek tiger by night — a Manchurian tiger obsessed with all things tech.</span></p>
+          <p><span class="zh">全栈开发 / 前后端 / 运维 / DevOps / AI / 渗透 / 网安 / 美术设计……什么都折腾</span><span class="en">Full-stack dev / frontend & backend / ops / DevOps / AI / pentest / cybersecurity / art design… I dabble in everything.</span></p>
+          <p><span class="zh">AdventureX 2026 黑客松选手 🚀</span><span class="en">AdventureX 2026 Hackathon participant 🚀</span></p>
+          <p><span class="zh">正经地说：热爱把代码变成服务，也热爱把想法变成画布上的线条</span><span class="en">I love turning code into services, and ideas into lines on a canvas.</span></p>
+          <p><span class="zh">伯里曼人体绘画的受益者 🐯，理工科出身但手停不下来</span><span class="en">Bridgman's anatomy drawing disciple 🐯 — engineering-minded but can't stop drawing.</span></p>
+          <p><span class="zh">什么都想试试，什么领域都花过时间研究 : )</span><span class="en">Curious about everything, spent time digging into every field that caught my eye : )</span></p>
+          <p class="bio-bonjour"><a href="https://bonjour.bio/b8qfqm" target="_blank"><i class="fas fa-link"></i> bonjour.bio/b8qfqm</a></p>
+        </div>
 
         <h3><span class="zh">技能栈</span><span class="en">Tech Stack</span></h3>
         <div class="stack-grid">
-          <div class="stack-card"><div class="st-name">Cloud</div><div class="st-list"><span>Docker</span><span>nginx</span><span>Linux</span><span>SSH</span><span>CI/CD</span></div></div>
-          <div class="stack-card"><div class="st-name">Backend</div><div class="st-list"><span>Python</span><span>Node.js</span><span>REST API</span></div></div>
+          <div class="stack-card"><div class="st-name">Cloud / Ops</div><div class="st-list"><span>Docker</span><span>nginx</span><span>Linux</span><span>SSH</span><span>CI/CD</span><span>DevOps</span></div></div>
+          <div class="stack-card"><div class="st-name">Backend</div><div class="st-list"><span>Python</span><span>Node.js</span><span>REST API</span><span>渗透</span></div></div>
           <div class="stack-card"><div class="st-name">Frontend</div><div class="st-list"><span>HTML/CSS</span><span>JavaScript</span><span>TailwindCSS</span></div></div>
           <div class="stack-card"><div class="st-name">Database</div><div class="st-list"><span>MySQL</span><span>SQLite</span><span>Redis</span></div></div>
           <div class="stack-card"><div class="st-name">AI / Bot</div><div class="st-list"><span>AstrBot</span><span>OneBot</span><span>Ollama</span><span>LLM</span></div></div>
+          <div class="stack-card"><div class="st-name">Art & Design</div><div class="st-list"><span>素描</span><span>人体结构</span><span>角色设计</span><span>伯里曼</span></div></div>
           <div class="stack-card"><div class="st-name">Tools</div><div class="st-list"><span>Git</span><span>GitHub</span><span>curl</span><span>systemd</span></div></div>
         </div>
 
-        <h3><span class="zh">项目</span><span class="en">Projects</span></h3>
-        <div class="proj-item">
-          <div class="proj-head"><span class="proj-name">Memoir</span><span class="proj-lang lang-python">Python</div>
-          <p class="proj-desc"><span class="zh">AstrBot 长期记忆库插件，指令存取记忆，独立 WebUI 管理面板。</span><span class="en">AstrBot long-term memory plugin. Store &amp; retrieve memories, standalone WebUI panel.</span></p>
-          <a class="proj-link" href="https://github.com/Zaienscookie/astrbot_plugin_memoir" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        </div>
-        <div class="proj-item">
-          <div class="proj-head"><span class="proj-name">Sentinel</span><span class="proj-lang lang-python">Python</div>
-          <p class="proj-desc"><span class="zh">台服务器</span><span class="en">Server</span> cluster sentinel. SSH multi-machine management for cloud ops.</p>
-          <a class="proj-link" href="https://github.com/Zaienscookie/sentinel" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        </div>
-        <div class="proj-item">
-          <div class="proj-head"><span class="proj-name">ZeroBot</span><span class="proj-lang lang-none">-</div>
-          <p class="proj-desc"><span class="zh">基于 OneBot 协议的机器人开发框架。</span><span class="en">Bot framework based on the OneBot protocol.</span></p>
-          <a class="proj-link" href="https://github.com/Zaienscookie/ZeroBot" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        </div>
-
-        <a href="posts/" class="read-more"><span class="zh">查看全部项目</span><span class="en">All projects</span> &raquo;</a>
+        <h3><span class="zh">画廊</span><span class="en">Gallery</span></h3>
+        <div class="gallery-grid" id="gallery"></div>
       </div>
     </article>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+      <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+      <img id="lightbox-img" src="" alt="">
+      <div class="lightbox-nav">
+        <button class="lb-btn" onclick="navLightbox(-1)">&#10094;</button>
+        <button class="lb-btn" onclick="navLightbox(1)">&#10095;</button>
+      </div>
+    </div>
 
     <div class="footer">
       <span>&copy; 2026 &middot; zain <i class="fas fa-heart" style="color:var(--text-muted);font-size:12px;"></i> Powered by pure HTML/CSS</span>
@@ -125,8 +128,7 @@
   </aside>
 
 </div>
-</body>
-</html>
+
 <script>
 function toggleLang() {
   var body = document.body;
@@ -151,6 +153,69 @@ function toggleLang() {
     btn.textContent = '中';
   }
 })();
+
+// ===== 画廊 & 灯箱 =====
+var galleryImgs = [
+  'img/gallery/1_thumb.jpg','img/gallery/2_thumb.jpg','img/gallery/3_thumb.jpg',
+  'img/gallery/4_thumb.jpg','img/gallery/5_thumb.jpg','img/gallery/6_thumb.jpg',
+  'img/gallery/cat_thumb.jpg','img/gallery/car_thumb.jpg',
+  'img/gallery/IMG_20250804_110020_thumb.jpg','img/gallery/IMG_20250804_223722_thumb.jpg',
+  'img/gallery/IMG_20250822_084059_thumb.jpg','img/gallery/IMG_20250903_204244_thumb.jpg',
+  'img/gallery/IMG_20251005_115215_thumb.jpg','img/gallery/IMG_20251005_115750_thumb.jpg',
+  'img/gallery/IMG_20251005_115802_thumb.jpg','img/gallery/IMG_20260309_182714_thumb.jpg',
+  'img/gallery/IMG_20260722_142120_thumb.jpg','img/gallery/IMG_20260728_002239_thumb.jpg',
+  'img/gallery/IMG_20260728_003334_thumb.jpg','img/gallery/kuanzhaixiangzi_thumb.jpg',
+  'img/gallery/mail_thumb.jpg'
+];
+var fullImgs = [
+  'img/gallery/1.jpg','img/gallery/2.jpg','img/gallery/3.jpg',
+  'img/gallery/4.jpg','img/gallery/5.jpg','img/gallery/6.jpg',
+  'img/gallery/cat.jpg','img/gallery/car.jpg',
+  'img/gallery/IMG_20250804_110020.jpg','img/gallery/IMG_20250804_223722.jpg',
+  'img/gallery/IMG_20250822_084059.jpg','img/gallery/IMG_20250903_204244.jpg',
+  'img/gallery/IMG_20251005_115215.jpg','img/gallery/IMG_20251005_115750.jpg',
+  'img/gallery/IMG_20251005_115802.jpg','img/gallery/IMG_20260309_182714.jpg',
+  'img/gallery/IMG_20260722_142120.jpg','img/gallery/IMG_20260728_002239.jpg',
+  'img/gallery/IMG_20260728_003334.jpg','img/gallery/kuanzhaixiangzi.jpg',
+  'img/gallery/mail.jpg'
+];
+
+(function initGallery() {
+  var box = document.getElementById('gallery');
+  if (!box) return;
+  var html = '';
+  for (var i = 0; i < galleryImgs.length; i++) {
+    html += '<div class="g-item" onclick="openLightbox(' + i + ')">' +
+            '<img loading="lazy" src="' + galleryImgs[i] + '" alt="gallery ' + (i+1) + '">' +
+            '</div>';
+  }
+  box.innerHTML = html;
+})();
+
+var curIdx = 0;
+function openLightbox(i) {
+  curIdx = i;
+  document.getElementById('lightbox').style.display = 'flex';
+  document.getElementById('lightbox-img').src = fullImgs[i];
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  var lb = document.getElementById('lightbox');
+  if (e) { e.stopPropagation(); }
+  lb.style.display = 'none';
+  document.body.style.overflow = '';
+}
+function navLightbox(dir) {
+  curIdx = (curIdx + dir + fullImgs.length) % fullImgs.length;
+  document.getElementById('lightbox-img').src = fullImgs[curIdx];
+}
+document.addEventListener('keydown', function(e) {
+  var lb = document.getElementById('lightbox');
+  if (lb.style.display !== 'flex') return;
+  if (e.key === 'ArrowRight') navLightbox(1);
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'Escape') closeLightbox();
+});
 </script>
 </body>
 </html>
