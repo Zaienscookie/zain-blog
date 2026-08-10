@@ -100,7 +100,6 @@
         </div>
 
         <div class="proj-item">
-          <div class="proj-head"><span class="proj-name">Memoir</span><div class="proj-item">
           <div class="proj-head"><span class="proj-name">Memoir</span><span class="proj-lang lang-python">Python</div>
           <p class="proj-desc"><span class="zh">AstrBot 长期记忆库插件，指令存取记忆，独立 WebUI 管理面板。</span><span class="en">AstrBot long-term memory plugin. Store &amp; retrieve memories, standalone WebUI panel.</span></p>
           <div class="proj-tags"><span>AstrBot</span><span>WebUI</span></div>
@@ -285,10 +284,10 @@ function toggleLang() {
   var el = document.getElementById('donut');
   if(!el) return;
   var A=0,B=0;
-  var w=80,h=24;
-  var i,j,o,x,y,N,D,c,s,ff,ee,gg,ll,mm,nn,tt,hh;
+  var w=60,h=17;
+  var i,j,o,x,y,N,D,c,s,ee,ff,gg,ll,mm,nn,tt,hh;
   var b=new Array(w*h), z=new Array(w*h);
-  var chars = '.,-~:;=!*#$@';
+  var chars='.,-~:;=!*#$@';
   function frame(){
     for(i=0;i<w*h;i++){b[i]=i%w==w-1?'\n':' ';z[i]=0;}
     for(j=0;j<6.28;j+=0.07){
@@ -299,8 +298,8 @@ function toggleLang() {
         D=1/(c*hh*ee+ff*gg+5);
         ll=Math.cos(i); mm=Math.cos(B); nn=Math.sin(B);
         tt=c*hh*gg-ff*ee;
-        x=Math.floor(w/2+30*D*(ll*hh*mm-tt*nn));
-        y=Math.floor(h/2+15*D*(ll*hh*nn+tt*mm));
+        x=Math.floor(w/2+22*D*(ll*hh*mm-tt*nn));
+        y=Math.floor(h/2+11*D*(ll*hh*nn+tt*mm));
         o=x+w*y;
         N=Math.floor(8*((ff*ee-c*ll*gg)*mm-c*ll*ee-ff*gg-ll*ll*ll*nn));
         if(y>0&&y<h&&x>0&&x<w&&D>z[o]){
@@ -308,7 +307,7 @@ function toggleLang() {
         }
       }
     }
-    el.textContent = b.join('');
+    el.textContent=b.join('');
     A+=0.04; B+=0.02;
   }
   setInterval(frame,50);
