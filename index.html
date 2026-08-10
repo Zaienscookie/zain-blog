@@ -63,8 +63,8 @@
         <p><span class="zh">专注云计算方向，从容器编排到 API 网关，从 SSH 集群到后端服务。</span><span class="en">Cloud-first, full-stack. From container orchestration to API gateways, from SSH clusters to backend services.</span></p>
         <div class="stack-grid">
           <div class="stack-card"><div class="st-name">Cloud</div><div class="st-list"><span>Docker</span><span>nginx</span><span>Linux</span><span>SSH</span><span>CI/CD</span></div></div>
-          <div class="stack-card"><div class="st-name">Backend</div><div class="st-list"><span>Python</span><span>Node.js</span><span>REST API</span></div></div>
-          <div class="stack-card"><div class="st-name">Frontend</div><div class="st-list"><span>HTML/CSS</span><span>JavaScript</span><span>TailwindCSS</span></div></div>
+          <div class="stack-card"><div class="st-name">Backend</div><div class="st-list"><span>Python</span><span>Java</span><span>Node.js</span><span>C/C++</span></div></div>
+          <div class="stack-card"><div class="st-name">Frontend</div><div class="st-list"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>TailwindCSS</span></div></div>
           <div class="stack-card"><div class="st-name">Database</div><div class="st-list"><span>MySQL</span><span>SQLite</span><span>Redis</span></div></div>
           <div class="stack-card"><div class="st-name">AI / Bot</div><div class="st-list"><span>AstrBot</span><span>OneBot</span><span>Ollama</span><span>LLM</span></div></div>
           <div class="stack-card"><div class="st-name">Tools</div><div class="st-list"><span>Git</span><span>GitHub</span><span>curl</span><span>systemd</span></div></div>
@@ -201,12 +201,50 @@ function toggleLang() {
   setTimeout(function() {
     if (body.classList.contains('lang-zh')) {
       body.classList.remove('lang-zh'); body.classList.add('lang-en'); btn.textContent = '中';
+      localStorage.setItem('blog-lang', 'en');
     } else {
       body.classList.remove('lang-en'); body.classList.add('lang-zh'); btn.textContent = 'EN';
+      localStorage.setItem('blog-lang', 'zh');
     }
     body.classList.remove('lang-fade');
   }, 120);
 }
+(function() {
+  var saved = localStorage.getItem('blog-lang');
+  var btn = document.getElementById('langBtn');
+  if (saved === 'en' && btn) {
+    document.body.classList.remove('lang-zh'); document.body.classList.add('lang-en');
+    btn.textContent = '中';
+  }
+})();
+</script>
+<script>
+(function() {
+  var colors = {
+    'Python': '#3572A5', 'Docker': '#2496ED', 'nginx': '#009639',
+    'Linux': '#FCC624', 'SSH': '#89e051', 'Cloud': '#3b82f6',
+    'AstrBot': '#6366f1', 'OneBot': '#8b5cf6', 'LLM': '#ec4899',
+    'API': '#f59e0b', 'Git': '#f05032', 'GitHub': '#6e5494',
+    'MySQL': '#4479a1', 'Redis': '#dc382d', 'JavaScript': '#f1e05a',
+    'HTML': '#e34c26', 'CSS': '#563d7c', 'Java': '#b07219',
+    'C/C++': '#f34b7d', 'Node.js': '#339933', 'REST API': '#00add8',
+    'TailwindCSS': '#38b2ac', 'WebUI': '#4f46e5', 'Profile': '#0ea5e9',
+    'PIL': '#eab308', 'Dialogue': '#f97316', 'Cluster': '#14b8a6',
+    'Ollama': '#8b5cf6', 'systemd': '#dc2626', 'curl': '#0d9488',
+    'CI/CD': '#10b981', 'Full-Stack': '#6366f1', 'Frontend': '#e34c26',
+    'Backend': '#3572A5', 'Database': '#4479a1', 'AI / Bot': '#ec4899',
+    'Tools': '#6e5494', 'Undo It': '#0ea5e9', 'LLM Trace': '#ec4899'
+  };
+  var tags = document.querySelectorAll('.tag-item, .cat-item, .welcome-tags span, .proj-tags span, .st-list span');
+  tags.forEach(function(t) {
+    var name = t.textContent.trim();
+    var c = colors[name];
+    if (c) {
+      t.style.setProperty('border-color', c, 'important');
+      t.style.setProperty('color', c, 'important');
+    }
+  });
+})();
 </script>
 </body>
 </html>
