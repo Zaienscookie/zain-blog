@@ -327,6 +327,27 @@ body.lang-fade { animation: langFade .25s ease; }
 .proj-desc { font-size: 13px; color: var(--text-muted); margin-top: 6px; line-height: 1.5; }
 .proj-tags { display: flex; gap: 5px; margin-top: 8px; flex-wrap: wrap; }
 .proj-tags span { font-size: 11px; padding: 1px 8px; border-radius: 2px; background: #333; color: var(--text); }
+/* 语言标签 - GitHub 配色 */
+.lang-tag { position: relative; padding-left: 18px !important; }
+.lang-tag::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.lang-c::before { background: #555555; }
+.lang-cpp::before { background: #f34b7d; }
+.lang-cmake::before { background: #DA3434; }
+.lang-typescript::before { background: #3178c6; }
+.lang-javascript::before { background: #f1e05a; }
+.lang-css::before { background: #563d7c; }
+.lang-html::before { background: #e34c26; }
+.lang-lvgl::before { background: #00BFA5; }
+.lang-embedded::before { background: #8b949e; }
 .proj-link { display: inline-block; margin-top: 10px; font-size: 12px; color: var(--text); }
 .proj-link:hover { color: var(--text-strong); }
 
