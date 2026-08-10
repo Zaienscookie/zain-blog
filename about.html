@@ -16,7 +16,14 @@
   <!-- Left Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-inner">
-      <div class="avatar-wrap"><img src="img/avatar.jpg" alt="zain" class="avatar-img"></div>
+      <div class="avatar-stack" id="avatarStack" onclick="flipAvatar()">
+  <div class="avatar-card card-front">
+    <img src="img/avatar.jpg" alt="zain" class="avatar-img">
+  </div>
+  <div class="avatar-card card-back">
+    <img src="img/zaiens_photo.jpg" alt="zain" class="avatar-img">
+  </div>
+</div>
       <div class="site-author-name">zain</div>
       <div class="site-description"><span class="zh">云计算 / 全栈开发者</span><span class="en">Cloud / Full-Stack</span></div>
             <div class="lang-bar">
@@ -74,6 +81,18 @@
 
     
 
+  
+    <!-- 图片查看器 -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+      <span class="lightbox-close" onclick="event.stopPropagation();closeLightbox()">&times;</span>
+      <div class="lightbox-img-wrap" onclick="event.stopPropagation()">
+        <img id="lightbox-img" src="" alt="">
+      </div>
+      <div class="lightbox-nav" onclick="event.stopPropagation()">
+        <button class="lb-btn" onclick="navLightbox(-1)">&#10094; 上一张</button>
+        <button class="lb-btn" onclick="navLightbox(1)">下一张 &#10095;</button>
+      </div>
+    </div>
   </main>
 
   <!-- Right Sidebar -->
@@ -143,7 +162,7 @@ function toggleLang() {
   }
 })();
 
-// ===== 画廊 =====
+// ===== 画廊 & 灯箱 =====
 var galleryList = [
   {t:'img/gallery/1_thumb.jpg', f:'img/gallery/1.jpg', c:'span2'},
   {t:'img/gallery/2_thumb.jpg', f:'img/gallery/2.jpg', c:'span2'},
@@ -168,17 +187,39 @@ var galleryList = [
   {t:'img/gallery/mail_thumb.jpg', f:'img/gallery/mail.jpg', c:'tall'}
 ];
 
+var curIdx = 0;
+
 (function() {
   var box = document.getElementById('gallery');
   if (!box) return;
   var h = '';
   for (var i = 0; i < galleryList.length; i++) {
     var g = galleryList[i];
-    h += '<a href="' + g.f + '" target="_blank" class="g-item ' + g.c + '">' +
-         '<img src="' + g.t + '" alt="photo ' + (i+1) + '"></a>';
+    h += '<div class="g-item ' + g.c + '" onclick="openLightbox(' + i + ')">' +
+         '<img src="' + g.t + '" alt="photo ' + (i+1) + '"></div>';
   }
   box.innerHTML = h;
 })();
-</script>
-</body>
-</html>
+
+function openLightbox(i) {
+  curIdx = i;
+  document.getElementById('lightbox').style.display = 'flex';
+  document.getElementById('lightbox-img').src = galleryList[i].f;
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+function navLightbox(dir) {
+  curIdx = (curIdx + dir + galleryList.length) % galleryList.length;
+  var img = document.getElementById('lightbox-img');
+  img.src = galleryList[curIdx].f;
+}
+document.addEventListener('keydown', function(e) {
+  var lb = document.getElementById('lightbox');
+  if (lb.style.display !== 'flex') return;
+  if (e.key === 'ArrowRight') navLightbox(1);
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'Escape') closeLightbox();
+});

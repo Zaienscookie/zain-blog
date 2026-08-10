@@ -16,7 +16,14 @@
   <!-- Left Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-inner">
-      <div class="avatar-wrap"><img src="img/avatar.jpg" alt="zain" class="avatar-img"></div>
+      <div class="avatar-stack" id="avatarStack" onclick="flipAvatar()">
+  <div class="avatar-card card-front">
+    <img src="img/avatar.jpg" alt="zain" class="avatar-img">
+  </div>
+  <div class="avatar-card card-back">
+    <img src="img/zaiens_photo.jpg" alt="zain" class="avatar-img">
+  </div>
+</div>
       <div class="site-author-name">zain</div>
       <div class="site-description"><span class="zh">云计算 / 全栈开发者</span><span class="en">Cloud / Full-Stack</span></div>
             <div class="lang-bar">
@@ -199,6 +206,10 @@
 </body>
 </html>
 <script>
+
+function flipAvatar() {
+  document.getElementById('avatarStack').classList.toggle('flipped');
+}
 function toggleLang() {
   var body = document.body;
   var btn = document.getElementById('langBtn');

@@ -478,6 +478,46 @@ body.lang-fade { animation: langFade .25s ease; }
   display: block;
 }
 
+/* 翻牌头像 */
+.avatar-stack {
+  width: 96px; height: 96px;
+  margin: 0 auto 16px;
+  position: relative;
+  perspective: 600px;
+  cursor: pointer;
+}
+.avatar-card {
+  position: absolute;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  backface-visibility: hidden;
+  transition: transform .5s ease;
+}
+.avatar-stack .card-front {
+  transform: rotateY(0deg);
+}
+.avatar-stack .card-back {
+  transform: rotateY(180deg);
+}
+.avatar-stack.flipped .card-front {
+  transform: rotateY(180deg);
+}
+.avatar-stack.flipped .card-back {
+  transform: rotateY(360deg);
+}
+.avatar-card .avatar-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+}
+
+@media (max-width: 768px) {
+  .avatar-stack { width: 72px; height: 72px; }
+}
+
 /* 关于页 - 介绍卡片 */
 .bio-card { padding: 0 0 8px; }
 .bio-card p { margin: 6px 0; line-height: 1.7; }
@@ -522,6 +562,55 @@ body.lang-fade { animation: langFade .25s ease; }
   .g-item.span2 { grid-column: span 2; grid-row: span 2; }
   .g-item.tall  { grid-column: span 1; grid-row: span 2; }
   .g-item.normal { grid-column: span 1; grid-row: span 1; }
+}
+
+/* 图片查看器（内置灯箱） */
+.lightbox {
+  display: none;
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,.88);
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+}
+.lightbox-img-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 92vw;
+  max-height: 92vh;
+}
+.lightbox-img-wrap img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 4px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.6);
+}
+.lightbox-close {
+  position: fixed; top: 20px; right: 30px;
+  font-size: 38px; color: #aaa; cursor: pointer;
+  width: 44px; height: 44px; line-height: 44px;
+  text-align: center; border-radius: 50%;
+  background: rgba(0,0,0,.3); z-index: 99999;
+  transition: color .2s, background .2s;
+}
+.lightbox-close:hover { color: #fff; background: rgba(255,255,255,.15); }
+.lightbox-nav {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 24px; z-index: 99999;
+}
+.lb-btn {
+  background: rgba(255,255,255,.12);
+  color: #ddd; border: none;
+  font-size: 15px; cursor: pointer;
+  padding: 10px 24px; border-radius: 8px;
+  transition: background .2s, color .2s;
+}
+.lb-btn:hover { background: rgba(255,255,255,.25); color: #fff; }
+
+@media (max-width: 768px) {
+  .lightbox-close { top: 12px; right: 16px; font-size: 30px; width: 36px; height: 36px; line-height: 36px; }
+  .lb-btn { padding: 6px 16px; font-size: 13px; }
 }
 
 @media (max-width: 768px) {
