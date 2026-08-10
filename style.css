@@ -100,7 +100,7 @@ a:hover { color: var(--accent-hover); }
 .avatar-wrap {
   width: 96px; height: 96px;
   margin: 0 auto 16px;
-  border-radius: 50%;
+  border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--line);
 }
@@ -463,6 +463,7 @@ body.lang-fade { animation: langFade .25s ease; }
   .sidebar { width: 100%; height: auto; position: static; padding: 24px 0; border-right: none; border-bottom: 1px solid var(--line); }
   .avatar-wrap { width: 72px; height: 72px; }
   .avatar-initial { font-size: 30px; }
+  .avatar-img { border-radius: 12px; }
   .sidebar-menu { display: flex; margin-top: 16px; }
   .sidebar-menu a { flex: 1; border-top: none; border-bottom: none; }
   .sidebar-menu a:last-child { border-bottom: none; }
