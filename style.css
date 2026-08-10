@@ -117,16 +117,17 @@ a:hover { color: var(--accent-hover); }
 
 /* 甜甜圈 */
 .donut-wrap {
-  margin: 12px auto 0;
-  width: 160px;
-  height: 48px;
+  margin: 6px auto 0;
+  width: 180px;
+  height: 68px;
   overflow: hidden;
-  font-size: 5px;
-  line-height: 5px;
+  font-size: 4px;
+  line-height: 4px;
   font-family: var(--mono);
   color: var(--text-muted);
-  opacity: .7;
+  opacity: .6;
   letter-spacing: 0.5px;
+  transform: scale(0.85);
 }
 
 /* 侧边栏菜单 */
