@@ -121,12 +121,13 @@ a:hover { color: var(--accent-hover); }
   width: 192px;
   height: 96px;
   overflow: hidden;
+  white-space: pre;
   font-size: 4px;
   line-height: 4px;
-  font-family: var(--mono);
+  font-family: 'Courier New', 'Source Code Pro', monospace;
   color: var(--text-muted);
-  opacity: .6;
-  letter-spacing: 0.5px;
+  opacity: .65;
+  letter-spacing: 0;
 }
 
 /* 侧边栏菜单 */
