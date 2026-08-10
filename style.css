@@ -353,91 +353,72 @@ a:hover { color: var(--accent-hover); }
 .footer { text-align: center; padding: 30px 0; color: var(--text-muted); font-size: 13px; border-top: 1px solid var(--line); margin-top: 24px; }
 .footer .heart { color: var(--text-muted); }
 
-
-/* ═══ 中英文切换 ═══ */
-body.lang-en .zh { display: none !important; }
-body.lang-zh .en { display: none !important; }
-
-.lang-bar { display: flex; align-items: center; justify-content: center; margin-top: 22px; }
-.lang-btn {
-  cursor: pointer;
-  font-size: 12px;
-  font-family: var(--mono);
-  color: var(--text);
-  border: 1px solid #444;
-  background: none;
-  padding: 4px 14px;
-  border-radius: 14px;
-  transition: .2s ease;
-}
-.lang-btn:hover { border-color: var(--text); color: var(--text-strong); }
-
-/* ═══ 右侧边栏 ═══ */
-.right-bar {
-  width: 240px;
-  flex-shrink: 0;
-  padding: 40px 16px;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-  border-left: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 .widget {
   border: 1px solid var(--line);
   border-radius: 4px;
   background: var(--bg-card);
-  padding: 14px;
-  margin-bottom: 16px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
   animation: fadeUp .5s ease both;
+  transition: .2s ease;
 }
+.widget:hover { border-color: #444; }
 .widget-title {
-  font-size: 13px;
-  color: var(--accent);
+  font-size: 11px;
+  color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   margin-bottom: 10px;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
   border-bottom: 1px solid var(--line);
 }
-.widget ul { list-style: none; }
-.widget li { padding: 4px 0; font-size: 13px; }
+.widget ul { list-style: none; width: 100%; }
+.widget li { padding: 5px 0; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,.03); }
+.widget li:last-child { border-bottom: none; }
 .widget li a,
-.cat-item { color: var(--text); cursor: default; }
+.cat-item { color: var(--text); cursor: default; transition: .15s ease; }
 .widget li a:hover,
-.cat-item:hover { color: var(--text-strong); }
-.widget .count { float: right; color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+.cat-item:hover { color: var(--text-strong); padding-left: 3px; }
+.widget .count { float: right; color: var(--text-muted); font-size: 11px; font-family: var(--mono); }
 
 /* 标签云 */
 .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
 .tag-cloud a,
 .tag-item {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text);
   border: 1px solid #444;
-  padding: 2px 10px;
+  padding: 3px 10px;
   border-radius: 12px;
-  transition: .15s;
+  transition: .2s ease;
   cursor: default;
 }
 .tag-cloud a:hover,
-.tag-item:hover { border-color: var(--text); color: var(--text-strong); }
+.tag-item:hover { border-color: #666; color: var(--text-strong); background: rgba(255,255,255,.03); }
 
 /* 友情链接 */
-.link-list a { display: block; padding: 4px 0; font-size: 13px; color: var(--text); }
-.link-list a i { margin-right: 6px; color: var(--text-muted); width: 14px; }
-.link-list a:hover { color: var(--text-strong); }
+.link-list a { display: block; padding: 5px 0; font-size: 13px; color: var(--text); border-bottom: 1px solid rgba(255,255,255,.03); transition: .15s ease; }
+.link-list a:last-child { border-bottom: none; }
+.link-list a i { margin-right: 8px; color: var(--text-muted); width: 14px; }
+.link-list a:hover { color: var(--text-strong); padding-left: 4px; }
 
-.widget-about .wname { font-size: 14px; color: var(--text-strong); }
-.widget-about .wdesc { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+/* ═══ 右侧边栏 ═══ */
+.right-bar {
+  width: 240px;
+  flex-shrink: 0;
+  padding: 40px 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  border-left: 1px solid var(--line);
+  align-self: flex-start;
+}
 
-/* ═══ 响应式 ═══ */
 @media (max-width: 1100px) {
   .right-bar { display: none; }
 }
+
 @media (max-width: 768px) {
   .container { flex-direction: column; }
   .sidebar { width: 100%; height: auto; position: static; padding: 24px 0; border-right: none; border-bottom: 1px solid var(--line); }
