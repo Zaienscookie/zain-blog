@@ -282,9 +282,10 @@ a:hover { color: var(--accent-hover); }
 .post-title .en { font-size: 15px; font-weight: inherit; color: var(--text-muted); }
 
 /* ═══ 中英文切换 ═══ */
-body.lang-en .zh { display: none !important; }
-body.lang-zh .en { display: none !important; }
-.zh, .en { font-weight: inherit; }
+body.lang-en .zh, body.lang-en .ru { display: none !important; }
+body.lang-zh .en, body.lang-zh .ru { display: none !important; }
+body.lang-ru .zh, body.lang-ru .en { display: none !important; }
+.zh, .en, .ru { font-weight: inherit; }
 body.lang-fade { animation: langFade .25s ease; }
 @keyframes langFade {
   0%   { opacity: 1; }
