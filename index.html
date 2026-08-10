@@ -29,6 +29,7 @@
             <div class="lang-bar">
         <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
       </div>
+          <div class="donut-wrap" id="donut"></div>
       <div class="social">
         <a href="https://github.com/Zaienscookie" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
         <a href="https://github.com/Zaienscookie?tab=repositories" target="_blank" title="Repos"><i class="fas fa-code-branch"></i></a>
@@ -270,6 +271,34 @@ function toggleLang() {
       t.style.setProperty('color', c, 'important');
     }
   });
+})();
+// ===== 甜甜圈 ASCII 动画 =====
+(function() {
+  var el = document.getElementById('donut');
+  if (!el) return;
+  var A=1, B=1;
+  function render() {
+    var b=[], z=[];
+    var w=80, h=24;
+    for(var i=0;i<w*h;i++){b[i]=i%w==w-1?'\n':' ';z[i]=0;}
+    for(var j=0;j<6.28;j+=0.07){
+      for(var i=0;i<6.28;i+=0.02){
+        var c=Math.sin(i), d=Math.cos(j), e=Math.sin(A), f=Math.sin(j), g=Math.cos(A),
+            hh=d+2, D=1/(c*hh*e+f*g+5), l=Math.cos(i), m=Math.cos(B), n=Math.sin(B),
+            t=c*hh*g-f*e;
+        var x=Math.floor(w/2+30*D*(l*hh*m-t*n)),
+            y=Math.floor(h/2+15*D*(l*hh*n+t*m));
+        var o=x+w*y, N=Math.floor(8*((f*e-c*d*g)*m-c*d*e-f*g-l*d*n));
+        if(y>0&&y<h&&x>0&&x<w&&D>z[o]){
+          z[o]=D; b[o]='.,-~:;=!*#$@'[N>0?N:0];
+        }
+      }
+    }
+    el.innerHTML = b.join('');
+    A+=0.04; B+=0.02;
+  }
+  setInterval(render, 50);
+  render();
 })();
 </script>
 </body>

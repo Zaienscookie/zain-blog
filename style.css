@@ -115,6 +115,20 @@ a:hover { color: var(--accent-hover); }
 .site-author-name { font-size: 18px; font-weight: 400; color: var(--text-strong); margin-top: 8px; }
 .site-description { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 
+/* 甜甜圈 */
+.donut-wrap {
+  margin: 12px auto 0;
+  width: 160px;
+  height: 48px;
+  overflow: hidden;
+  font-size: 5px;
+  line-height: 5px;
+  font-family: var(--mono);
+  color: var(--text-muted);
+  opacity: .7;
+  letter-spacing: 0.5px;
+}
+
 /* 侧边栏菜单 */
 .sidebar-menu { margin-top: 28px; width: 100%; }
 .sidebar-menu a {
