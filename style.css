@@ -377,6 +377,9 @@ body.lang-fade { animation: langFade .25s ease; }
 .proj-lang.lang-dockerfile::before { background: #384d54; }
 .proj-lang.lang-none::before { background: #8b949e; }
 
+/* 多语言徽章容器 */
+.proj-langs { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+
 /* ═══ 动态时间线 ═══ */
 .timeline { position: relative; padding-left: 22px; }
 .timeline::before {
