@@ -72,20 +72,7 @@
       </div>
     </article>
 
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-      <span class="lightbox-close" onclick="event.stopPropagation();closeLightbox()">&times;</span>
-      <div class="lightbox-img-wrap" onclick="event.stopPropagation()">
-        <img id="lightbox-img" src="" alt="">
-      </div>
-      <div class="lightbox-nav" onclick="event.stopPropagation()">
-        <button class="lb-btn" onclick="navLightbox(-1)">&#10094; 上一张</button>
-        <button class="lb-btn" onclick="navLightbox(1)">下一张 &#10095;</button>
-      </div>
-    </div>
-
-    <div class="footer">
-      <span>&copy; 2026 &middot; zain <i class="fas fa-heart" style="color:var(--text-muted);font-size:12px;"></i> Powered by pure HTML/CSS</span>
-    </div>
+    
 
   </main>
 
@@ -156,66 +143,42 @@ function toggleLang() {
   }
 })();
 
-// ===== 画廊 & 灯箱 =====
-var galleryData = [
-  {t:'img/gallery/1_thumb.jpg', f:'img/gallery/1.jpg', s:'span2'},
-  {t:'img/gallery/2_thumb.jpg', f:'img/gallery/2.jpg', s:'span2'},
-  {t:'img/gallery/3_thumb.jpg', f:'img/gallery/3.jpg', s:'span2'},
-  {t:'img/gallery/4_thumb.jpg', f:'img/gallery/4.jpg', s:'span2'},
-  {t:'img/gallery/5_thumb.jpg', f:'img/gallery/5.jpg', s:'span2'},
-  {t:'img/gallery/6_thumb.jpg', f:'img/gallery/6.jpg', s:'tall'},
-  {t:'img/gallery/cat_thumb.jpg', f:'img/gallery/cat.jpg', s:'normal'},
-  {t:'img/gallery/car_thumb.jpg', f:'img/gallery/car.jpg', s:'span2'},
-  {t:'img/gallery/IMG_20250804_110020_thumb.jpg', f:'img/gallery/IMG_20250804_110020.jpg', s:'tall'},
-  {t:'img/gallery/IMG_20250804_223722_thumb.jpg', f:'img/gallery/IMG_20250804_223722.jpg', s:'tall'},
-  {t:'img/gallery/IMG_20250822_084059_thumb.jpg', f:'img/gallery/IMG_20250822_084059.jpg', s:'tall'},
-  {t:'img/gallery/IMG_20250903_204244_thumb.jpg', f:'img/gallery/IMG_20250903_204244.jpg', s:'tall'},
-  {t:'img/gallery/kuanzhaixiangzi_thumb.jpg', f:'img/gallery/kuanzhaixiangzi.jpg', s:'span2'},
-  {t:'img/gallery/IMG_20251005_115215_thumb.jpg', f:'img/gallery/IMG_20251005_115215.jpg', s:'tall'},
-  {t:'img/gallery/IMG_20251005_115750_thumb.jpg', f:'img/gallery/IMG_20251005_115750.jpg', s:'tall'},
-  {t:'img/gallery/IMG_20251005_115802_thumb.jpg', f:'img/gallery/IMG_20251005_115802.jpg', s:'tall'},
-  {t:'img/gallery/IMG_20260309_182714_thumb.jpg', f:'img/gallery/IMG_20260309_182714.jpg', s:'span2'},
-  {t:'img/gallery/IMG_20260728_002239_thumb.jpg', f:'img/gallery/IMG_20260728_002239.jpg', s:'span2'},
-  {t:'img/gallery/IMG_20260728_003334_thumb.jpg', f:'img/gallery/IMG_20260728_003334.jpg', s:'span2'},
-  {t:'img/gallery/IMG_20260722_142120_thumb.jpg', f:'img/gallery/IMG_20260722_142120.jpg', s:'tall'},
-  {t:'img/gallery/mail_thumb.jpg', f:'img/gallery/mail.jpg', s:'tall'}
+// ===== 画廊 =====
+var galleryList = [
+  {t:'img/gallery/1_thumb.jpg', f:'img/gallery/1.jpg', c:'span2'},
+  {t:'img/gallery/2_thumb.jpg', f:'img/gallery/2.jpg', c:'span2'},
+  {t:'img/gallery/3_thumb.jpg', f:'img/gallery/3.jpg', c:'span2'},
+  {t:'img/gallery/4_thumb.jpg', f:'img/gallery/4.jpg', c:'span2'},
+  {t:'img/gallery/5_thumb.jpg', f:'img/gallery/5.jpg', c:'span2'},
+  {t:'img/gallery/6_thumb.jpg', f:'img/gallery/6.jpg', c:'tall'},
+  {t:'img/gallery/cat_thumb.jpg', f:'img/gallery/cat.jpg', c:'normal'},
+  {t:'img/gallery/car_thumb.jpg', f:'img/gallery/car.jpg', c:'span2'},
+  {t:'img/gallery/IMG_20250804_110020_thumb.jpg', f:'img/gallery/IMG_20250804_110020.jpg', c:'tall'},
+  {t:'img/gallery/IMG_20250804_223722_thumb.jpg', f:'img/gallery/IMG_20250804_223722.jpg', c:'tall'},
+  {t:'img/gallery/IMG_20250822_084059_thumb.jpg', f:'img/gallery/IMG_20250822_084059.jpg', c:'tall'},
+  {t:'img/gallery/IMG_20250903_204244_thumb.jpg', f:'img/gallery/IMG_20250903_204244.jpg', c:'tall'},
+  {t:'img/gallery/kuanzhaixiangzi_thumb.jpg', f:'img/gallery/kuanzhaixiangzi.jpg', c:'span2'},
+  {t:'img/gallery/IMG_20251005_115215_thumb.jpg', f:'img/gallery/IMG_20251005_115215.jpg', c:'tall'},
+  {t:'img/gallery/IMG_20251005_115750_thumb.jpg', f:'img/gallery/IMG_20251005_115750.jpg', c:'tall'},
+  {t:'img/gallery/IMG_20251005_115802_thumb.jpg', f:'img/gallery/IMG_20251005_115802.jpg', c:'tall'},
+  {t:'img/gallery/IMG_20260309_182714_thumb.jpg', f:'img/gallery/IMG_20260309_182714.jpg', c:'span2'},
+  {t:'img/gallery/IMG_20260728_002239_thumb.jpg', f:'img/gallery/IMG_20260728_002239.jpg', c:'span2'},
+  {t:'img/gallery/IMG_20260728_003334_thumb.jpg', f:'img/gallery/IMG_20260728_003334.jpg', c:'span2'},
+  {t:'img/gallery/IMG_20260722_142120_thumb.jpg', f:'img/gallery/IMG_20260722_142120.jpg', c:'tall'},
+  {t:'img/gallery/mail_thumb.jpg', f:'img/gallery/mail.jpg', c:'tall'}
 ];
 
-var curIdx = 0;
-
-(function initGallery() {
+(function() {
   var box = document.getElementById('gallery');
   if (!box) return;
-  var html = '';
-  for (var i = 0; i < galleryData.length; i++) {
-    html += '<div class="g-item ' + galleryData[i].s + '" onclick="openLightbox(' + i + ')">' +
-            '<img loading="lazy" src="' + galleryData[i].t + '" alt="gallery ' + (i+1) + '">' +
-            '</div>';
+  var h = '';
+  for (var i = 0; i < galleryList.length; i++) {
+    var g = galleryList[i];
+    h += '<a href="' + g.f + '" target="_blank" class="g-item ' + g.c + '">' +
+         '<img src="' + g.t + '" alt="photo ' + (i+1) + '"></a>';
   }
-  box.innerHTML = html;
+  box.innerHTML = h;
 })();
-
-function openLightbox(i) {
-  curIdx = i;
-  document.getElementById('lightbox').style.display = 'flex';
-  document.getElementById('lightbox-img').src = galleryData[i].f;
-  document.body.style.overflow = 'hidden';
-}
-function closeLightbox() {
-  document.getElementById('lightbox').style.display = 'none';
-  document.body.style.overflow = '';
-}
-function navLightbox(dir) {
-  curIdx = (curIdx + dir + galleryData.length) % galleryData.length;
-  document.getElementById('lightbox-img').src = galleryData[curIdx].f;
-}
-document.addEventListener('keydown', function(e) {
-  var lb = document.getElementById('lightbox');
-  if (lb.style.display !== 'flex') return;
-  if (e.key === 'ArrowRight') navLightbox(1);
-  if (e.key === 'ArrowLeft') navLightbox(-1);
-  if (e.key === 'Escape') closeLightbox();
-});
 </script>
 </body>
 </html>
