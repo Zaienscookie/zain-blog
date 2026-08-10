@@ -72,12 +72,14 @@
       </div>
     </article>
 
-    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-      <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
-      <img id="lightbox-img" src="" alt="">
-      <div class="lightbox-nav">
-        <button class="lb-btn" onclick="navLightbox(-1)">&#10094;</button>
-        <button class="lb-btn" onclick="navLightbox(1)">&#10095;</button>
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+      <span class="lightbox-close" onclick="event.stopPropagation();closeLightbox()">&times;</span>
+      <div class="lightbox-img-wrap" onclick="event.stopPropagation()">
+        <img id="lightbox-img" src="" alt="">
+      </div>
+      <div class="lightbox-nav" onclick="event.stopPropagation()">
+        <button class="lb-btn" onclick="navLightbox(-1)">&#10094; 上一张</button>
+        <button class="lb-btn" onclick="navLightbox(1)">下一张 &#10095;</button>
       </div>
     </div>
 
@@ -155,59 +157,57 @@ function toggleLang() {
 })();
 
 // ===== 画廊 & 灯箱 =====
-var galleryImgs = [
-  'img/gallery/1_thumb.jpg','img/gallery/2_thumb.jpg','img/gallery/3_thumb.jpg',
-  'img/gallery/4_thumb.jpg','img/gallery/5_thumb.jpg','img/gallery/6_thumb.jpg',
-  'img/gallery/cat_thumb.jpg','img/gallery/car_thumb.jpg',
-  'img/gallery/IMG_20250804_110020_thumb.jpg','img/gallery/IMG_20250804_223722_thumb.jpg',
-  'img/gallery/IMG_20250822_084059_thumb.jpg','img/gallery/IMG_20250903_204244_thumb.jpg',
-  'img/gallery/IMG_20251005_115215_thumb.jpg','img/gallery/IMG_20251005_115750_thumb.jpg',
-  'img/gallery/IMG_20251005_115802_thumb.jpg','img/gallery/IMG_20260309_182714_thumb.jpg',
-  'img/gallery/IMG_20260722_142120_thumb.jpg','img/gallery/IMG_20260728_002239_thumb.jpg',
-  'img/gallery/IMG_20260728_003334_thumb.jpg','img/gallery/kuanzhaixiangzi_thumb.jpg',
-  'img/gallery/mail_thumb.jpg'
+var galleryData = [
+  {t:'img/gallery/1_thumb.jpg', f:'img/gallery/1.jpg', s:'span2'},
+  {t:'img/gallery/2_thumb.jpg', f:'img/gallery/2.jpg', s:'span2'},
+  {t:'img/gallery/3_thumb.jpg', f:'img/gallery/3.jpg', s:'span2'},
+  {t:'img/gallery/4_thumb.jpg', f:'img/gallery/4.jpg', s:'span2'},
+  {t:'img/gallery/5_thumb.jpg', f:'img/gallery/5.jpg', s:'span2'},
+  {t:'img/gallery/6_thumb.jpg', f:'img/gallery/6.jpg', s:'tall'},
+  {t:'img/gallery/cat_thumb.jpg', f:'img/gallery/cat.jpg', s:'normal'},
+  {t:'img/gallery/car_thumb.jpg', f:'img/gallery/car.jpg', s:'span2'},
+  {t:'img/gallery/IMG_20250804_110020_thumb.jpg', f:'img/gallery/IMG_20250804_110020.jpg', s:'tall'},
+  {t:'img/gallery/IMG_20250804_223722_thumb.jpg', f:'img/gallery/IMG_20250804_223722.jpg', s:'tall'},
+  {t:'img/gallery/IMG_20250822_084059_thumb.jpg', f:'img/gallery/IMG_20250822_084059.jpg', s:'tall'},
+  {t:'img/gallery/IMG_20250903_204244_thumb.jpg', f:'img/gallery/IMG_20250903_204244.jpg', s:'tall'},
+  {t:'img/gallery/kuanzhaixiangzi_thumb.jpg', f:'img/gallery/kuanzhaixiangzi.jpg', s:'span2'},
+  {t:'img/gallery/IMG_20251005_115215_thumb.jpg', f:'img/gallery/IMG_20251005_115215.jpg', s:'tall'},
+  {t:'img/gallery/IMG_20251005_115750_thumb.jpg', f:'img/gallery/IMG_20251005_115750.jpg', s:'tall'},
+  {t:'img/gallery/IMG_20251005_115802_thumb.jpg', f:'img/gallery/IMG_20251005_115802.jpg', s:'tall'},
+  {t:'img/gallery/IMG_20260309_182714_thumb.jpg', f:'img/gallery/IMG_20260309_182714.jpg', s:'span2'},
+  {t:'img/gallery/IMG_20260728_002239_thumb.jpg', f:'img/gallery/IMG_20260728_002239.jpg', s:'span2'},
+  {t:'img/gallery/IMG_20260728_003334_thumb.jpg', f:'img/gallery/IMG_20260728_003334.jpg', s:'span2'},
+  {t:'img/gallery/IMG_20260722_142120_thumb.jpg', f:'img/gallery/IMG_20260722_142120.jpg', s:'tall'},
+  {t:'img/gallery/mail_thumb.jpg', f:'img/gallery/mail.jpg', s:'tall'}
 ];
-var fullImgs = [
-  'img/gallery/1.jpg','img/gallery/2.jpg','img/gallery/3.jpg',
-  'img/gallery/4.jpg','img/gallery/5.jpg','img/gallery/6.jpg',
-  'img/gallery/cat.jpg','img/gallery/car.jpg',
-  'img/gallery/IMG_20250804_110020.jpg','img/gallery/IMG_20250804_223722.jpg',
-  'img/gallery/IMG_20250822_084059.jpg','img/gallery/IMG_20250903_204244.jpg',
-  'img/gallery/IMG_20251005_115215.jpg','img/gallery/IMG_20251005_115750.jpg',
-  'img/gallery/IMG_20251005_115802.jpg','img/gallery/IMG_20260309_182714.jpg',
-  'img/gallery/IMG_20260722_142120.jpg','img/gallery/IMG_20260728_002239.jpg',
-  'img/gallery/IMG_20260728_003334.jpg','img/gallery/kuanzhaixiangzi.jpg',
-  'img/gallery/mail.jpg'
-];
+
+var curIdx = 0;
 
 (function initGallery() {
   var box = document.getElementById('gallery');
   if (!box) return;
   var html = '';
-  for (var i = 0; i < galleryImgs.length; i++) {
-    html += '<div class="g-item" onclick="openLightbox(' + i + ')">' +
-            '<img loading="lazy" src="' + galleryImgs[i] + '" alt="gallery ' + (i+1) + '">' +
+  for (var i = 0; i < galleryData.length; i++) {
+    html += '<div class="g-item ' + galleryData[i].s + '" onclick="openLightbox(' + i + ')">' +
+            '<img loading="lazy" src="' + galleryData[i].t + '" alt="gallery ' + (i+1) + '">' +
             '</div>';
   }
   box.innerHTML = html;
 })();
 
-var curIdx = 0;
 function openLightbox(i) {
   curIdx = i;
   document.getElementById('lightbox').style.display = 'flex';
-  document.getElementById('lightbox-img').src = fullImgs[i];
+  document.getElementById('lightbox-img').src = galleryData[i].f;
   document.body.style.overflow = 'hidden';
 }
-function closeLightbox(e) {
-  var lb = document.getElementById('lightbox');
-  if (e) { e.stopPropagation(); }
-  lb.style.display = 'none';
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
   document.body.style.overflow = '';
 }
 function navLightbox(dir) {
-  curIdx = (curIdx + dir + fullImgs.length) % fullImgs.length;
-  document.getElementById('lightbox-img').src = fullImgs[curIdx];
+  curIdx = (curIdx + dir + galleryData.length) % galleryData.length;
+  document.getElementById('lightbox-img').src = galleryData[curIdx].f;
 }
 document.addEventListener('keydown', function(e) {
   var lb = document.getElementById('lightbox');
