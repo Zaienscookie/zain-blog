@@ -61,11 +61,15 @@ body {
   animation: fadeIn .6s ease;
 }
 
-/* 容器动画 */
-.container { animation: fadeUp .5s ease .12s both; }
+/* 容器 */
+.container { }
 
-/* 侧边栏淡入 */
-.sidebar { animation: fadeIn .8s ease; }
+/* 侧边栏（导航时不带动画） */
+.sidebar { }
+
+/* 主内容 & 右侧栏动画 */
+.main { animation: fadeUp .5s ease both; }
+.right-bar { animation: fadeUp .5s ease both; }
 
 /* 侧边栏头像悬浮 */
 .avatar-wrap { transition: .3s ease; }
