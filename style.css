@@ -653,7 +653,7 @@ body.lang-fade { animation: langFade .25s ease; }
 
 /* 联系我/社交平台 - 关于页 */
 .contact-section {
-  margin-bottom: 20px;
+  margin: 30px 0 36px;
   padding: 16px 20px;
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -664,19 +664,32 @@ body.lang-fade { animation: langFade .25s ease; }
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   padding-bottom: 6px;
   border-bottom: 1px solid var(--line);
 }
 .contact-links {
   display: flex;
-  gap: 24px;
+  gap: 0;
   flex-wrap: wrap;
+  align-items: center;
 }
 .contact-links a {
   color: var(--accent);
   font-size: 14px;
+  padding: 0 20px;
   transition: .15s ease;
+  position: relative;
+}
+.contact-links a:not(:last-child)::after {
+  content: "|";
+  position: absolute;
+  right: -2px;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+.contact-links a:first-child {
+  padding-left: 0;
 }
 .contact-links a:hover {
   color: var(--text-strong);
