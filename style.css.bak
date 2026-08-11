@@ -428,36 +428,6 @@ body.lang-fade { animation: langFade .25s ease; }
   text-align: center;
 }
 .widget { text-align: center; }
-.cat-widget { position: relative; }
-.widget-cat {
-  position: absolute;
-  top: -30px;
-  right: 6px;
-  z-index: 10;
-  pointer-events: none;
-  animation: cat-breathe 2.5s ease-in-out infinite;
-}
-.cat-svg { display: block; }
-.cat-tail {
-  transform-origin: 38px 38px;
-  animation: cat-wag 2s ease-in-out infinite;
-  transform-box: fill-box;
-}
-.cat-eye.left { transform-origin: 20px 15px; animation: cat-blink 3.5s ease-in-out infinite; }
-.cat-eye.right { transform-origin: 30px 15px; animation: cat-blink 3.5s ease-in-out infinite 0.1s; }
-@keyframes cat-wag {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(8deg); }
-  75% { transform: rotate(-6deg); }
-}
-@keyframes cat-breathe {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-2px); }
-}
-@keyframes cat-blink {
-  0%, 88%, 100% { transform: scaleY(1); }
-  94% { transform: scaleY(0.1); }
-}
 .widget ul { list-style: none; width: 100%; display: inline-block; text-align: center; }
 .widget li { padding: 5px 0; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,.03); }
 .widget li:last-child { border-bottom: none; }
@@ -508,82 +478,17 @@ body.lang-fade { animation: langFade .25s ease; }
   .right-bar { display: none; }
 }
 
-/* ═══ 手机端适配 ═══ */
 @media (max-width: 768px) {
   .container { flex-direction: column; }
-  .sidebar { width: 100%; height: auto; position: static; padding: 14px 0 10px; border-right: none; border-bottom: 1px solid var(--line); }
-  .sidebar-inner { padding: 0 14px; }
-  .avatar-stack { width: 56px; height: 56px; margin-bottom: 6px; }
-  .avatar-card { border-radius: 9px; }
-  .site-author-name { font-size: 15px; margin-top: 2px; }
-  .site-description { font-size: 12px; margin-top: 2px; }
-  .lang-bar { margin-top: 6px; }
-  .social { margin-top: 6px; gap: 12px; font-size: 14px; }
-  .sidebar-menu { display: flex; margin-top: 8px; }
-  .sidebar-menu a { flex: 1; border-top: none; border-bottom: none; font-size: 14px; padding: 8px 0; }
+  .sidebar { width: 100%; height: auto; position: static; padding: 24px 0; border-right: none; border-bottom: 1px solid var(--line); }
+  .avatar-wrap { width: 72px; height: 72px; }
+  .avatar-initial { font-size: 30px; }
+  .avatar-img { border-radius: 12px; }
+  .sidebar-menu { display: flex; margin-top: 16px; }
+  .sidebar-menu a { flex: 1; border-top: none; border-bottom: none; }
   .sidebar-menu a:last-child { border-bottom: none; }
-  .sidebar-menu a .m-icon { display: none; }
-  .donut-wrap { display: none; }
-  .site-visitors { font-size: 12px; margin-top: 6px; }
-  .main { padding: 16px 14px; }
-  .welcome { padding: 8px 0 14px; margin-bottom: 16px; }
-  .welcome h1 { font-size: 22px; }
-  .welcome p { font-size: 14px; margin-top: 4px; }
-  .welcome-tags { gap: 6px; margin-top: 10px; }
-  .welcome-tags span { font-size: 12px; padding: 3px 10px; }
-  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 6px; margin: 12px 0; }
-  .stat { padding: 10px; }
-  .stat .s-num { font-size: 20px; }
-  .stat .s-label { font-size: 12px; }
-  .post-block { padding: 14px 0; }
-  .post-title { font-size: 17px; }
-  .post-meta { font-size: 12px; }
-  .stack-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; margin: 10px 0; }
-  .stack-card { padding: 10px; }
-  .stack-card .st-name { font-size: 13px; }
-  .stack-card .st-list { gap: 4px; margin-top: 5px; }
-  .stack-card .st-list span { font-size: 11px; padding: 2px 7px; }
+  .main { padding: 24px 16px; }
   .project-grid { grid-template-columns: 1fr; }
-  .proj-item { padding: 12px; }
-  .proj-name { font-size: 15px; }
-  .proj-desc { font-size: 13px; }
-  .proj-langs { gap: 3px; }
-  .proj-lang { font-size: 10px; padding: 1px 6px; }
-  .proj-tags { gap: 4px; margin-top: 6px; }
-  .proj-tags span { font-size: 11px; padding: 2px 8px; }
-  .proj-link { font-size: 13px; }
-  .timeline { padding: 6px 0; }
-  .tl-item { font-size: 13px; }
-  .tl-date { font-size: 11px; min-width: 48px; }
-  .footer { font-size: 12px; padding: 12px 0; }
-  .widget { margin-bottom: 12px; }
-  .widget-title { font-size: 14px; }
-  .cat-item { font-size: 13px; }
-  .tag-item { font-size: 12px; padding: 3px 10px; }
-  .read-more { font-size: 13px; }
-}
-
-@media (max-width: 480px) {
-  .sidebar { padding: 10px 0 8px; }
-  .avatar-stack { width: 48px; height: 48px; margin-bottom: 4px; }
-  .avatar-card { border-radius: 8px; }
-  .site-author-name { font-size: 13px; }
-  .site-description { font-size: 11px; }
-  .sidebar-menu a { font-size: 12px; padding: 6px 0; }
-  .main { padding: 12px 10px; }
-  .welcome h1 { font-size: 18px; }
-  .welcome p { font-size: 12px; }
-  .welcome .welcome-sub { font-size: 12px; }
-  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 4px; margin: 8px 0; }
-  .stat { padding: 8px; }
-  .stat .s-num { font-size: 16px; }
-  .stat .s-label { font-size: 10px; }
-  .stack-grid { grid-template-columns: 1fr 1fr; gap: 4px; }
-  .stack-card { padding: 8px; }
-  .post-title { font-size: 15px; }
-  .proj-item { padding: 8px; }
-  .proj-name { font-size: 13px; }
-  .proj-desc { font-size: 12px; }
 }
 /* 头像图片样式 */
 .avatar-img {
@@ -626,6 +531,11 @@ body.lang-fade { animation: langFade .25s ease; }
   object-fit: cover;
   display: block;
   border-radius: 0;
+}
+
+@media (max-width: 768px) {
+  .avatar-stack { width: 72px; height: 72px; }
+  .avatar-card { border-radius: 10px; }
 }
 
 /* 关于页 - 介绍卡片 */
