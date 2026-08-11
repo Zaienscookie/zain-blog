@@ -651,6 +651,44 @@ body.lang-fade { animation: langFade .25s ease; }
 .bio-contact a:hover { text-decoration: underline; }
 .bio-contact i { width: 16px; text-align: center; margin-right: 4px; }
 
+/* 联系我/社交平台 - 关于页 */
+.contact-section {
+  margin-bottom: 20px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg-card);
+}
+.contact-title {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+.contact-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.contact-links a {
+  color: var(--accent);
+  font-size: 14px;
+  transition: .15s ease;
+}
+.contact-links a:hover {
+  color: var(--text-strong);
+  text-decoration: underline;
+}
+.contact-links i {
+  width: 16px;
+  text-align: center;
+  margin-right: 4px;
+  color: var(--text-muted);
+}
+
 /* 画廊网格 - 拼贴瀑布流 */
 .gallery-grid {
   display: grid;
