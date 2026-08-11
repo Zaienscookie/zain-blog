@@ -28,7 +28,7 @@
       <div class="site-description"><span class="zh">云计算 / 全栈开发者</span><span class="en">Cloud / Full-Stack</span>
             <span class="ru">Облачный / Full-Stack</span></div>
             <div class="lang-bar">
-        <button class="lang-btn" onclick="toggleLang()" id="langBtn">RU</button>
+        <button class="lang-btn" onclick="toggleLang()" id="langBtn">中</button>
       </div>
           <div class="social">
         <a href="https://github.com/Zaienscookie" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -146,15 +146,15 @@ function toggleLang() {
   var btn = document.getElementById('langBtn');
   body.classList.add('lang-fade');
   setTimeout(function() {
-    if (body.classList.contains('lang-zh')) {
-      body.classList.remove('lang-zh'); body.classList.add('lang-en'); btn.textContent = 'RU';
-      localStorage.setItem('blog-lang', 'en');
-    } else if (body.classList.contains('lang-en')) {
-      body.classList.remove('lang-en'); body.classList.add('lang-ru'); btn.textContent = '中';
+    if (body.classList.contains('lang-en')) {
+      body.classList.remove('lang-en'); body.classList.add('lang-zh'); btn.textContent = 'RU';
+      localStorage.setItem('blog-lang', 'zh');
+    } else if (body.classList.contains('lang-zh')) {
+      body.classList.remove('lang-zh'); body.classList.add('lang-ru'); btn.textContent = 'EN';
       localStorage.setItem('blog-lang', 'ru');
     } else {
-      body.classList.remove('lang-ru'); body.classList.add('lang-zh'); btn.textContent = 'EN';
-      localStorage.setItem('blog-lang', 'zh');
+      body.classList.remove('lang-ru'); body.classList.add('lang-en'); btn.textContent = '中';
+      localStorage.setItem('blog-lang', 'en');
     }
     body.classList.remove('lang-fade');
   }, 120);
@@ -164,15 +164,17 @@ function toggleLang() {
   var btn = document.getElementById('langBtn');
   if (btn) {
     if (saved === 'en') {
-      document.body.classList.remove('lang-zh'); document.body.classList.add('lang-en');
+      document.body.className = 'lang-en';
+      btn.textContent = '中';
+    } else if (saved === 'zh') {
+      document.body.className = 'lang-zh';
       btn.textContent = 'RU';
     } else if (saved === 'ru') {
-      document.body.classList.remove('lang-zh'); document.body.classList.add('lang-ru');
-      btn.textContent = '中';
+      document.body.className = 'lang-ru';
+      btn.textContent = 'EN';
     } else {
-      document.body.classList.remove('lang-zh'); document.body.classList.remove('lang-ru');
-      document.body.classList.add('lang-en');
-      btn.textContent = 'RU';
+      document.body.className = 'lang-en';
+      btn.textContent = '中';
     }
   }
 })();
