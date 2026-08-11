@@ -428,25 +428,7 @@ body.lang-fade { animation: langFade .25s ease; }
   text-align: center;
 }
 .widget { text-align: center; }
-.cat-widget { position: relative; }
-.widget-cat {
-  position: absolute;
-  top: -46px;
-  right: -2px;
-  z-index: 10;
-  pointer-events: none;
-  animation: cat-breathe 3s ease-in-out infinite;
-}
-.cat-img {
-  display: block;
-  width: 90px;
-  height: auto;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,.35));
-}
-@keyframes cat-breathe {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-}
+
 .widget ul { list-style: none; width: 100%; display: inline-block; text-align: center; }
 .widget li { padding: 5px 0; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,.03); }
 .widget li:last-child { border-bottom: none; }

@@ -199,10 +199,7 @@
   <!-- Right Sidebar -->
   <aside class="right-bar" id="rightBar">
 
-    <div class="widget cat-widget">
-      <div class="widget-cat">
-        <img src="img/cat_icon.png" alt="cat" class="cat-img">
-      </div>
+    <div class="widget">
       <div class="widget-title"><span class="zh">分类</span><span class="en">Categories</span>
             <span class="ru">Категории</span></div>
       <ul>
@@ -242,11 +239,16 @@
 
   </aside>
 
+<!-- 桌宠 -->
+  <div id="pet" class="pet-wrap">
+    <img id="pet-img" src="./pet/max/stand1.png" alt="pet">
+  </div>
+
 </div>
 </body>
 </html>
-<script>
 
+<script>
 function flipAvatar() {
   var s = document.getElementById('avatarStack');
   s.classList.toggle('flipped');
