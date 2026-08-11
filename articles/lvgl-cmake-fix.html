@@ -17,7 +17,7 @@
   <!-- Left Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-inner">
-      <div class="avatar-stack" id="avatarStack">
+      <div class="avatar-stack" id="avatarStack" onclick="flipAvatar()">
   <div class="avatar-card card-front">
     <img src="../img/avatar.jpg" alt="zain" class="avatar-img">
   </div>
@@ -213,6 +213,12 @@ function copyCode(btn) {
 }</script>
 <script>
 
+function flipAvatar() {
+  var s = document.getElementById('avatarStack');
+  s.classList.toggle('flipped');
+  localStorage.setItem('avatarFlipped', s.classList.contains('flipped') ? '1' : '0');
+}
+(function(){ if(localStorage.getItem('avatarFlipped')==='1'){ document.getElementById('avatarStack').classList.add('flipped'); } })();
 
 window.addEventListener('DOMContentLoaded', function(){
   var min = document.querySelector('.main');
