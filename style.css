@@ -512,7 +512,7 @@ body.lang-fade { animation: langFade .25s ease; }
 .easter-egg-btn:hover { opacity: .8; color: var(--accent); }
 .bug-item { position: fixed; z-index: 100000; animation: bugDance var(--dur) infinite alternate ease-in-out; }
 .bug-item img { width: 60px; height: 60px; display: block; }
-.bug-msg { position: fixed; z-index: 100001; font-size: 22px; font-weight: 700; color: #f38ba8; text-shadow: 0 0 12px rgba(0,0,0,.9), 0 0 4px #000; pointer-events: none; animation: bugFadeOut 5s ease forwards; }
+.bug-msg { position: fixed; z-index: 100001; font-size: 28px; font-weight: 900; color: #ff6b8a; text-shadow: 0 0 20px rgba(0,0,0,1), 0 0 8px #000, 2px 2px 0 #000; pointer-events: none; animation: bugFadeOut 6s ease forwards; background: rgba(0,0,0,.7); padding: 8px 18px; border-radius: 10px; border: 2px solid #ff6b8a; }
 .bug-clear-btn { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 100002; background: #f38ba8; color: #1e1e2e; border: none; padding: 10px 24px; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; pointer-events: auto; box-shadow: 0 4px 16px rgba(0,0,0,.5); opacity: 0; animation: bugFadeIn .3s ease .5s forwards; }
 .bug-clear-btn:hover { background: #f5c2e7; }
 @keyframes bugDance { 0% { transform: translate(0,0) rotate(0deg); } 25% { transform: translate(30px,-20px) rotate(10deg); } 50% { transform: translate(-20px,30px) rotate(-5deg); } 75% { transform: translate(20px,20px) rotate(8deg); } 100% { transform: translate(-30px,-10px) rotate(-3deg); } }

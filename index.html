@@ -373,33 +373,32 @@ document.getElementById('easterEggBtn').addEventListener('click', function() {
   overlay.className = 'bug-overlay active';
   document.body.appendChild(overlay);
   
-  var msgs = ['软件工程师的电子小宠物 🪳', '这程序有 Bug 啊！', 'Bug Hunter Mode 🐛', '🪳🪳🪳 他们在跳舞！'];
+  var msgs = ['软件工程师的电子小宠物', '你这程序有 Bug 啊'];
   var msg = msgs[Math.floor(Math.random() * msgs.length)];
   var msgEl = document.createElement('div');
   msgEl.className = 'bug-msg';
   msgEl.textContent = msg;
-  msgEl.style.left = 10 + Math.random() * 40 + '%';
-  msgEl.style.top = 8 + Math.random() * 20 + '%';
-  msgEl.style.fontSize = '22px';
+  msgEl.style.left = 8 + Math.random() * 30 + '%';
+  msgEl.style.top = 5 + Math.random() * 15 + '%';
   document.body.appendChild(msgEl);
   
-  // 放 15 只蟑螂，均匀分布
+  // 放 15 只蟑螂，网格随机分布
   for (var i = 0; i < 15; i++) {
     (function(idx) {
       setTimeout(function() {
         var bug = document.createElement('div');
         bug.className = 'bug-item';
-        // 网格化分布：5列3行
+        // 5列3行网格，每个格子内随机偏移
         var col = idx % 5;
         var row = Math.floor(idx / 5);
-        var left = 4 + col * 19 + Math.random() * 6;
-        var top = 3 + row * 30 + Math.random() * 8;
+        var left = 3 + col * 19 + Math.random() * 10;
+        var top = 2 + row * 30 + Math.random() * 12;
         bug.style.left = left + '%';
         bug.style.top = top + '%';
         bug.style.setProperty('--dur', (2 + Math.random() * 3) + 's');
         bug.style.animationDelay = Math.random() * 2 + 's';
-        // 大小随机
-        var size = 45 + Math.random() * 55;
+        // 大小随机 40~100px
+        var size = 40 + Math.random() * 60;
         bug.style.setProperty('--size', size + 'px');
         bug.innerHTML = '<img src="img/BUG_THERE_IS.gif" alt="bug" style="width:'+size+'px;height:'+size+'px">';
         document.body.appendChild(bug);
