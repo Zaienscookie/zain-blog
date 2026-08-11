@@ -526,16 +526,16 @@ body.lang-fade { animation: langFade .25s ease; }
 /* ═══ 手机端适配 ═══ */
 @media (max-width: 768px) {
   .container { flex-direction: column; }
-  .sidebar { width: 100%; min-width: 100%; height: auto; position: static; padding: 10px 0 8px; border-right: none; border-bottom: 1px solid var(--line); }
-  .sidebar-inner { padding: 0 12px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; justify-content: center; }
-  .avatar-stack { width: 40px; height: 40px; margin-bottom: 0; flex-shrink: 0; }
+  .sidebar { width: 100%; min-width: 100%; height: auto; position: static; padding: 10px 0 6px; border-right: none; border-bottom: 1px solid var(--line); }
+  .sidebar-inner { padding: 0 12px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 12px; }
+  .avatar-stack { width: 36px; height: 36px; margin-bottom: 0; flex-shrink: 0; }
   .avatar-card { border-radius: 7px; }
-  .site-author-name { font-size: 14px; margin-top: 0; margin-right: 4px; }
-  .site-description { font-size: 11px; margin-top: 0; margin-right: 8px; }
-  .lang-bar { margin-top: 0; margin-right: 8px; }
-  .social { margin-top: 0; gap: 8px; font-size: 13px; margin-right: 8px; }
-  .sidebar-menu { display: flex; margin-top: 0; }
-  .sidebar-menu a { flex: 0 1 auto; border-top: none; border-bottom: none; font-size: 13px; padding: 4px 8px; }
+  .site-author-name { font-size: 14px; margin-top: 0; margin-right: 2px; }
+  .site-description { font-size: 11px; margin-top: 0; margin-right: 6px; }
+  .lang-bar { margin-top: 0; margin-right: 6px; }
+  .social { margin-top: 0; gap: 10px; font-size: 14px; margin-right: 2px; }
+  .sidebar-menu { display: flex; width: 100%; justify-content: space-around; gap: 2px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .sidebar-menu a { flex: 1; text-align: center; border-top: none; border-bottom: none; font-size: 13px; padding: 6px 4px; }
   .sidebar-menu a:last-child { border-bottom: none; }
   .sidebar-menu a .m-icon { display: none; }
   .donut-wrap { display: none; }
