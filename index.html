@@ -378,23 +378,32 @@ document.getElementById('easterEggBtn').addEventListener('click', function() {
   var msgEl = document.createElement('div');
   msgEl.className = 'bug-msg';
   msgEl.textContent = msg;
-  msgEl.style.left = Math.random() * 60 + 20 + '%';
-  msgEl.style.top = Math.random() * 30 + 10 + '%';
+  msgEl.style.left = 10 + Math.random() * 40 + '%';
+  msgEl.style.top = 8 + Math.random() * 20 + '%';
+  msgEl.style.fontSize = '22px';
   document.body.appendChild(msgEl);
   
-  // 放 12 只蟑螂
-  for (var i = 0; i < 12; i++) {
+  // 放 15 只蟑螂，均匀分布
+  for (var i = 0; i < 15; i++) {
     (function(idx) {
       setTimeout(function() {
         var bug = document.createElement('div');
         bug.className = 'bug-item';
-        bug.style.left = Math.random() * 80 + 5 + '%';
-        bug.style.top = Math.random() * 70 + 5 + '%';
+        // 网格化分布：5列3行
+        var col = idx % 5;
+        var row = Math.floor(idx / 5);
+        var left = 4 + col * 19 + Math.random() * 6;
+        var top = 3 + row * 30 + Math.random() * 8;
+        bug.style.left = left + '%';
+        bug.style.top = top + '%';
         bug.style.setProperty('--dur', (2 + Math.random() * 3) + 's');
         bug.style.animationDelay = Math.random() * 2 + 's';
-        bug.innerHTML = '<img src="img/BUG_THERE_IS.gif" alt="bug">';
+        // 大小随机
+        var size = 45 + Math.random() * 55;
+        bug.style.setProperty('--size', size + 'px');
+        bug.innerHTML = '<img src="img/BUG_THERE_IS.gif" alt="bug" style="width:'+size+'px;height:'+size+'px">';
         document.body.appendChild(bug);
-      }, idx * 80);
+      }, idx * 60);
     })(i);
   }
   
