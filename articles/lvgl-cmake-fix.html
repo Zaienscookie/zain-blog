@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#222">
+<title>LVGL CMake INTERFACE_INCLUDE_DIRECTORIES 报错修复方案 · zain</title>
+<link rel="icon" type="image/png" href="../img/logo_blog.png">
+<link rel="shortcut icon" type="image/png" href="../img/logo_blog.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body class="lang-zh">
+<div class="container">
+
+  <!-- Left Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <div class="avatar-stack" id="avatarStack" onclick="flipAvatar()">
+  <div class="avatar-card card-front">
+    <img src="../img/avatar.jpg" alt="zain" class="avatar-img">
+  </div>
+  <div class="avatar-card card-back">
+    <img src="../img/zaiens_photo.jpg" alt="zain" class="avatar-img">
+  </div>
+</div>
+      <div class="site-author-name">zain</div>
+      <div class="site-description"><span class="zh">云计算 / 全栈开发者</span><span class="en">Cloud / Full-Stack</span>
+            <span class="ru">Облачный / Full-Stack</span></div>
+            <div class="lang-bar">
+        <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
+      </div>
+          <div class="social">
+        <a href="https://github.com/Zaienscookie" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://github.com/Zaienscookie?tab=repositories" target="_blank" title="Repos"><i class="fas fa-code-branch"></i></a>
+      </div>
+      <div class="sidebar-menu">
+        <a href=".."><span class="m-icon">/</span> <span class="zh">首页</span><span class="en">Home</span>
+            <span class="ru">Главная</span></a>
+        <a href="../posts/"><span class="m-icon">*</span> <span class="zh">项目</span><span class="en">Projects</span>
+            <span class="ru">Проекты</span></a>
+        <a href="." class="active"><span class="m-icon">=</span> <span class="zh">文章</span><span class="en">Articles</span>
+            <span class="ru">Статьи</span></a>
+        <a href="../about.html"><span class="m-icon">i</span> <span class="zh">关于</span><span class="en">About</span>
+            <span class="ru">Обо мне</span></a>
+      </div>
+      <div class="site-visitors"><i class="fa fa-eye"></i> 14 repos / 8 plugins</div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <article class="post-block">
+      <header class="post-header">
+        <h2 class="post-title">LVGL CMake INTERFACE_INCLUDE_DIRECTORIES 报错修复方案（Windows模拟器）</h2>
+        <div class="post-meta"><span>2026-07-13</span><span class="sep">|</span><span class="cat">#LVGL</span><span class="sep">|</span><span class="cat">#CMake</span><span class="sep">|</span><span class="cat">#嵌入式</span></div>
+        <div class="art-ref"><span class="zh">原文发布于</span><span class="en">Originally published on</span><span class="ru">Оригинал опубликован на</span> <a href="https://blog.csdn.net/reload111/article/details/162833555" target="_blank">CSDN</a></div>
+      </header>
+      <div class="post-body art-content">
+
+        <p><strong>重要参考：</strong><a href="https://blog.csdn.net/m0_46327721/article/details/132391454" target="_blank">解决：Target "XXX" INTERFACE_INCLUDE_DIRECTORIES property contains path</a></p>
+
+        <h3>一、报错信息</h3>
+        <p>本文旨在解决在 Windows 环境下编译 LVGL PC 模拟器项目时遇到的 CMake INTERFACE_INCLUDE_DIRECTORIES 路径报错问题。通过分析报错根源，并提供清晰的修复步骤，帮助开发者快速恢复编译流程。</p>
+        <p>编译 LVGL PC VSCode 模拟器项目时，CMake 核心报错：</p>
+        <pre><code class="language-plaintext">Target "lvgl" INTERFACE_INCLUDE_DIRECTORIES property contains path:
+"D:/.Desktop/lvgl_dev/lvgl/lv_port_pc_vscode-master" which is prefixed in the source directory.</code></pre>
+
+        <h3>二、报错根源定位（分析）</h3>
+
+        <h4>LVGL 内核代码无问题</h4>
+        <p>lvgl 源码 <code>main.cmake</code> 中，官方对自身头文件路径已做规范处理，全部使用 <code>$&lt;BUILD_INTERFACE&gt;</code> 区分构建/安装路径，完全符合 CMake 语法规范，不会触发报错。</p>
+        <pre><code class="language-cmake"># 官方合规代码，无需修改
+target_include_directories(lvgl SYSTEM PUBLIC
+  $&lt;BUILD_INTERFACE:${LVGL_ROOT_DIR}&gt;
+  $&lt;BUILD_INTERFACE:${LVGL_INCLUDE_DIR}&gt;
+  $&lt;BUILD_INTERFACE:${CONF_INC_DIR}&gt;
+  $&lt;BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}&gt;
+  $&lt;INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}&gt;
+)</code></pre>
+
+        <h4>报错真正诱因：上层 PORT 工程</h4>
+        <p><code>lv_port_pc_vscode-master/CMakeLists.txt</code> 中，直接给 lvgl 目标添加了<strong>裸绝对路径</strong>（项目根目录、SDL2 依赖目录），未包裹 <code>$&lt;BUILD_INTERFACE&gt;</code> 生成器表达式。</p>
+
+        <h4>报错触发必要条件</h4>
+        <ol>
+          <li>lvgl 目标的 <code>INTERFACE_INCLUDE_DIRECTORIES</code> 存在未规范处理的源码绝对路径；</li>
+          <li>lvgl 源码 <code>main.cmake</code> 末尾存在 <code>install(EXPORT lvglTargets)</code> 库导出逻辑，CMake 强制路径校验失败。</li>
+        </ol>
+
+        <h3>三、修复方案</h3>
+        <p>Windows 本地模拟器仅用于调试运行，<strong>无需编译安装、导出库文件</strong>，直接禁用 LVGL 所有安装导出逻辑。</p>
+
+        <h4>1. 代码修改操作</h4>
+        <p>打开 <code>lvgl/env_support/cmake/main.cmake</code> 文件，全量注释文件末尾的完整 INSTALLATION 代码块：</p>
+        <p>注释范围：从 <code>############################## INSTALLATION ######################################</code> 开始，到所有安装、导出、打包代码全部结束。</p>
+        <p>保留最后的 <code>############################## SET GLOBAL VARIABLES ######################################</code> 变量定义代码。</p>
+
+        <pre><code class="language-cmake">############################## INSTALLATION ######################################
+# 全部注释以下所有代码
+# Install public headers
+# install(
+#   DIRECTORY "${LVGL_ROOT_DIR}/include/lvgl"
+#   DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+#
+# # Install private headers only if required
+# if(CONFIG_LV_USE_PRIVATE_API)
+#   install(
+#     DIRECTORY "${LVGL_ROOT_DIR}/src/"
+#     DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/lvgl_private"
+#     FILES_MATCHING PATTERN "*.h"
+#   )
+#   ...
+# endif()
+#
+# # Generate and install CMake config files
+# include(CMakePackageConfigHelpers)
+# configure_package_config_file(...)
+# write_basic_package_version_file(...)
+# install(FILES ...)
+# install(TARGETS lvgl EXPORT lvglTargets ...)
+# install(EXPORT lvglTargets ...)
+# # thorvg / demos / examples 所有安装导出代码
+# ...
+############################## SET GLOBAL VARIABLES ######################################
+# 此段代码保留，不注释</code></pre>
+
+        <h4>2. 工程重置 &amp; 编译步骤</h4>
+        <p>清理旧编译缓存，避免残留配置报错：</p>
+        <p><strong>方式一：命令清理</strong></p>
+        <pre><code class="language-dos">cd D:/.Desktop/lvgl_dev/lvgl/lv_port_pc_vscode-master
+rmdir /s /q build</code></pre>
+        <p><strong>方式二：手动清理</strong>（命令报错时使用）<br>直接打开项目目录，手动删除 <code>build</code> 整个文件夹即可。</p>
+
+        <h4>3. 重新编译运行</h4>
+        <p>VSCode 直接执行 Run 编译，正常编译成功日志如下：</p>
+        <pre><code class="language-plaintext">[main] 正在生成文件夹: build all
+[build] 正在启动生成
+[proc] 正在执行命令: cmake --build ... --config Debug --target all -j 32 --
+[build] [  5%] Built target lvgl_thorvg
+[build] [ 56%] Built target lvgl
+[build] [ 65%] Built target lvgl_demos
+[build] [ 99%] Built target lvgl_examples
+[build] [100%] Built target main
+[driver] 生成完毕: 00:00:03.903
+[build] 生成已完成，退出代码为 0</code></pre>
+        <p>退出代码为 0，代表编译成功，可正常运行 LVGL 模拟器。</p>
+
+        <h3>总结</h3>
+        <p>这个报错不是 LVGL 源码本身的问题，官方源码的路径写法是完全规范的。真正原因就两点：</p>
+        <ol>
+          <li>PC 模拟器工程（port 层 CMake）直接裸写了 SDL2 和项目根目录的绝对路径，没有用构建表达式包裹；</li>
+          <li>LVGL 底层打开了库安装导出功能，CMake 一旦检测到公开头文件路径里有源码绝对路径，就直接报错阻止编译。</li>
+        </ol>
+        <p>针对 Windows 本地模拟器调试的场景，直接打开 lvgl 的 <code>main.cmake</code>，把文件末尾一整块 INSTALL 安装、EXPORT 导出代码全部注释掉，只保留最后的全局变量部分。然后删掉旧的 build 缓存文件夹，重新编译即可。</p>
+
+        <a href="." class="art-back read-more">&laquo; <span class="zh">返回文章列表</span><span class="en">Back to articles</span><span class="ru">Назад к статьям</span></a>
+
+      </div>
+    </article>
+
+    <div class="footer">
+      <span>&copy; 2026 &middot; zain <i class="fas fa-heart" style="color:var(--text-muted);font-size:12px;"></i> Powered by pure HTML/CSS</span>
+    </div>
+
+  </main>
+
+  <!-- Right Sidebar -->
+  <aside class="right-bar" id="rightBar">
+
+    <div class="widget">
+      <div class="widget-title"><span class="zh">分类</span><span class="en">Categories</span>
+            <span class="ru">Категории</span></div>
+      <ul>
+        <li><span class="cat-item">LVGL</span> <span class="count">1</span></li>
+        <li><span class="cat-item">嵌入式</span> <span class="count">1</span></li>
+        <li><span class="cat-item">CMake</span> <span class="count">1</span></li>
+      </ul>
+    </div>
+
+    <div class="widget">
+      <div class="widget-title"><span class="zh">链接</span><span class="en">Links</span>
+            <span class="ru">Ссылки</span></div>
+      <div class="link-list">
+        <a href="https://blog.csdn.net/reload111" target="_blank"><i class="fab fa-css3-alt"></i> CSDN</a>
+        <a href="https://github.com/Zaienscookie" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+    </div>
+
+  </aside>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/cmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/dos.min.js"></script>
+<script>hljs.highlightAll();
+// 代码块包装器：加语言标签 + 复制按钮
+document.querySelectorAll('pre code').forEach(function(block) {
+  var pre = block.parentElement;
+  var lang = (block.className.match(/language-(\w+)/) || [])[1] || 'code';
+  var cls = {'cmake':'CMake','bash':'Bash','dos':'CMD','plaintext':'Text','json':'JSON','yaml':'YAML','python':'Python','javascript':'JS','typescript':'TS','html':'HTML','css':'CSS','c':'C','cpp':'C++'};
+  var label = cls[lang] || lang.toUpperCase();
+  var html = block.innerHTML;
+  var code = block.textContent;
+  var wrap = document.createElement('div');
+  wrap.className = 'code-block';
+  wrap.innerHTML = '<div class="code-header"><span class="code-lang">'+label+'</span><button class="code-copy" onclick="copyCode(this)">复制 Copy</button></div>';
+  pre.parentNode.insertBefore(wrap, pre);
+  wrap.appendChild(pre);
+});
+function copyCode(btn) {
+  var pre = btn.parentElement.nextElementSibling;
+  var code = pre && pre.querySelector('code');
+  if (!code) return;
+  navigator.clipboard.writeText(code.textContent).then(function() {
+    btn.textContent = '✓ 已复制 Copied';
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.textContent='复制 Copy'; btn.classList.remove('copied'); }, 2000);
+  }).catch(function() { btn.textContent='失败'; });
+}</script>
+<script>
+
+function flipAvatar() {
+  var s = document.getElementById('avatarStack');
+  s.classList.toggle('flipped');
+  localStorage.setItem('avatarFlipped', s.classList.contains('flipped') ? '1' : '0');
+  setTimeout(function(){ if(!s.classList.contains('flipped')){ s.classList.remove('flipped'); } }, 4000);
+}
+(function(){ if(localStorage.getItem('avatarFlipped')==='1'){ document.getElementById('avatarStack').classList.add('flipped'); } })();
+window.addEventListener('DOMContentLoaded', function(){
+  var min = document.querySelector('.main');
+  if(min){ min.style.minHeight = (window.innerHeight-40)+'px'; }
+});
+
+function toggleLang(){
+  var b = document.body;
+  var en = b.classList.contains('lang-en');
+  var ru = b.classList.contains('lang-ru');
+  var btn = document.getElementById('langBtn');
+  if(en){ b.className='lang-ru'; btn.textContent='中'; }
+  else if(ru){ b.className='lang-zh'; btn.textContent='EN'; }
+  else { b.className='lang-en'; btn.textContent='РУ'; }
+  localStorage.setItem('lang', b.className.replace('lang-',''));
+}
+(function(){ var l=localStorage.getItem('lang'); if(l==='en'){document.body.className='lang-en';document.getElementById('langBtn').textContent='РУ';} else if(l==='ru'){document.body.className='lang-ru';document.getElementById('langBtn').textContent='中';} })();
+</script>
+</body>
+</html>

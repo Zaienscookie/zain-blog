@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#222">
+<title>Articles · zain</title>
+<link rel="icon" type="image/png" href="../img/logo_blog.png">
+<link rel="shortcut icon" type="image/png" href="../img/logo_blog.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="lang-zh">
+<div class="container">
+
+  <!-- Left Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <div class="avatar-stack" id="avatarStack" onclick="flipAvatar()">
+  <div class="avatar-card card-front">
+    <img src="../img/avatar.jpg" alt="zain" class="avatar-img">
+  </div>
+  <div class="avatar-card card-back">
+    <img src="../img/zaiens_photo.jpg" alt="zain" class="avatar-img">
+  </div>
+</div>
+      <div class="site-author-name">zain</div>
+      <div class="site-description"><span class="zh">云计算 / 全栈开发者</span><span class="en">Cloud / Full-Stack</span>
+            <span class="ru">Облачный / Full-Stack</span></div>
+            <div class="lang-bar">
+        <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
+      </div>
+          <div class="social">
+        <a href="https://github.com/Zaienscookie" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://github.com/Zaienscookie?tab=repositories" target="_blank" title="Repos"><i class="fas fa-code-branch"></i></a>
+      </div>
+      <div class="sidebar-menu">
+        <a href=".."><span class="m-icon">/</span> <span class="zh">首页</span><span class="en">Home</span>
+            <span class="ru">Главная</span></a>
+        <a href="../posts/"><span class="m-icon">*</span> <span class="zh">项目</span><span class="en">Projects</span>
+            <span class="ru">Проекты</span></a>
+        <a href="." class="active"><span class="m-icon">=</span> <span class="zh">文章</span><span class="en">Articles</span>
+            <span class="ru">Статьи</span></a>
+        <a href="../about.html"><span class="m-icon">i</span> <span class="zh">关于</span><span class="en">About</span>
+            <span class="ru">Обо мне</span></a>
+      </div>
+      <div class="site-visitors"><i class="fa fa-eye"></i> 14 repos / 8 plugins</div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <article class="post-block">
+      <header class="post-header">
+        <h2 class="post-title"><span class="zh">全部文章</span><span class="en">All Articles</span>
+            <span class="ru">Все статьи</span></h2>
+        <div class="post-meta"><span>2026-07-13</span><span class="sep">|</span><span class="cat">#LVGL</span></div>
+      </header>
+      <div class="post-body">
+
+        <div class="art-item">
+          <h3 class="art-title"><a href="lvgl-cmake-fix.html">LVGL CMake INTERFACE_INCLUDE_DIRECTORIES 报错修复方案（Windows模拟器）</a></h3>
+          <div class="art-meta"><span class="zh">LVGL · CMake · Windows 模拟器</span><span class="en">LVGL · CMake · Windows simulator</span><span class="ru">LVGL · CMake · Windows симулятор</span></div>
+          <p class="art-summary"><span class="zh">在 Windows 环境下编译 LVGL PC 模拟器项目时，遇到 INTERFACE_INCLUDE_DIRECTORIES 路径报错。分析发现，问题源于 port 工程直接添加裸绝对路径，未使用 $&lt;BUILD_INTERFACE&gt; 生成器表达式包裹，而 LVGL 底层启用了库安装导出校验。解决方案：注释 main.cmake 末尾的 INSTALLATION 代码块，删除 build 缓存后重新编译即可。</span><span class="en">Fix for the CMake INTERFACE_INCLUDE_DIRECTORIES error when building the LVGL PC simulator on Windows. The issue comes from raw absolute paths in the port project not wrapped in $&lt;BUILD_INTERFACE&gt;, combined with LVGL's install-export check. Solution: comment out the INSTALLATION block in main.cmake and rebuild.</span><span class="ru">Исправление ошибки CMake INTERFACE_INCLUDE_DIRECTORIES при сборке LVGL PC-симулятора в Windows. Проблема в «сырых» абсолютных путях в port-проекте и проверке установки/экспорта LVGL. Решение: закомментировать блок INSTALLATION в main.cmake и пересобрать.</span></p>
+          <a class="read-more" href="lvgl-cmake-fix.html"><span class="zh">阅读全文</span><span class="en">Read more</span><span class="ru">Читать</span> &raquo;</a>
+        </div>
+
+      </div>
+    </article>
+
+    <div class="footer">
+      <span>&copy; 2026 &middot; zain <i class="fas fa-heart" style="color:var(--text-muted);font-size:12px;"></i> Powered by pure HTML/CSS</span>
+    </div>
+
+  </main>
+
+  <!-- Right Sidebar -->
+  <aside class="right-bar" id="rightBar">
+
+    <div class="widget">
+      <div class="widget-title"><span class="zh">分类</span><span class="en">Categories</span>
+            <span class="ru">Категории</span></div>
+      <ul>
+        <li><span class="cat-item">LVGL</span> <span class="count">1</span></li>
+        <li><span class="cat-item">嵌入式</span> <span class="count">1</span></li>
+        <li><span class="cat-item">CMake</span> <span class="count">1</span></li>
+      </ul>
+    </div>
+
+    <div class="widget">
+      <div class="widget-title"><span class="zh">链接</span><span class="en">Links</span>
+            <span class="ru">Ссылки</span></div>
+      <div class="link-list">
+        <a href="https://blog.csdn.net/reload111" target="_blank"><i class="fab fa-css3-alt"></i> CSDN</a>
+        <a href="https://github.com/Zaienscookie" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+    </div>
+
+  </aside>
+
+</div>
+<script>
+
+function flipAvatar() {
+  var s = document.getElementById('avatarStack');
+  s.classList.toggle('flipped');
+  localStorage.setItem('avatarFlipped', s.classList.contains('flipped') ? '1' : '0');
+  setTimeout(function(){ if(!s.classList.contains('flipped')){ s.classList.remove('flipped'); } }, 4000);
+}
+(function(){ if(localStorage.getItem('avatarFlipped')==='1'){ document.getElementById('avatarStack').classList.add('flipped'); } })();
+window.addEventListener('DOMContentLoaded', function(){
+  var min = document.querySelector('.main');
+  if(min){ min.style.minHeight = (window.innerHeight-40)+'px'; }
+});
+
+function toggleLang(){
+  var b = document.body;
+  var en = b.classList.contains('lang-en');
+  var ru = b.classList.contains('lang-ru');
+  var btn = document.getElementById('langBtn');
+  if(en){ b.className='lang-ru'; btn.textContent='中'; }
+  else if(ru){ b.className='lang-zh'; btn.textContent='EN'; }
+  else { b.className='lang-en'; btn.textContent='РУ'; }
+  localStorage.setItem('lang', b.className.replace('lang-',''));
+}
+(function(){ var l=localStorage.getItem('lang'); if(l==='en'){document.body.className='lang-en';document.getElementById('langBtn').textContent='РУ';} else if(l==='ru'){document.body.className='lang-ru';document.getElementById('langBtn').textContent='中';} })();
+</script>
+</body>
+</html>
