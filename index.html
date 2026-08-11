@@ -194,6 +194,7 @@
 
     <div class="footer">
       <span>&copy; 2026 &middot; zain <i class="fas fa-heart" style="color:var(--text-muted);font-size:12px;"></i> Powered by pure HTML/CSS</span>
+      <button class="easter-egg-btn" id="easterEggBtn" title="?" aria-label="?">&bull;</button>
     </div>
 
   </main>
@@ -358,6 +359,55 @@ function toggleLang() {
   setInterval(frame,50);
   frame();
 })();
+</script>
+<script>
+// ===== 复活节彩蛋：Bug 跳舞 =====
+document.getElementById('easterEggBtn').addEventListener('click', function() {
+  // 移除旧彩蛋
+  var old = document.querySelector('.bug-overlay');
+  if (old) old.remove();
+  var oldBtn = document.querySelector('.bug-clear-btn');
+  if (oldBtn) oldBtn.remove();
+  
+  var overlay = document.createElement('div');
+  overlay.className = 'bug-overlay active';
+  document.body.appendChild(overlay);
+  
+  var msgs = ['软件工程师的电子小宠物 🪳', '这程序有 Bug 啊！', 'Bug Hunter Mode 🐛', '🪳🪳🪳 他们在跳舞！'];
+  var msg = msgs[Math.floor(Math.random() * msgs.length)];
+  var msgEl = document.createElement('div');
+  msgEl.className = 'bug-msg';
+  msgEl.textContent = msg;
+  msgEl.style.left = Math.random() * 60 + 20 + '%';
+  msgEl.style.top = Math.random() * 30 + 10 + '%';
+  document.body.appendChild(msgEl);
+  
+  // 放 12 只蟑螂
+  for (var i = 0; i < 12; i++) {
+    (function(idx) {
+      setTimeout(function() {
+        var bug = document.createElement('div');
+        bug.className = 'bug-item';
+        bug.style.left = Math.random() * 80 + 5 + '%';
+        bug.style.top = Math.random() * 70 + 5 + '%';
+        bug.style.setProperty('--dur', (2 + Math.random() * 3) + 's');
+        bug.style.animationDelay = Math.random() * 2 + 's';
+        bug.innerHTML = '<img src="img/BUG_THERE_IS.gif" alt="bug">';
+        document.body.appendChild(bug);
+      }, idx * 80);
+    })(i);
+  }
+  
+  // 清除按钮
+  var clearBtn = document.createElement('button');
+  clearBtn.className = 'bug-clear-btn';
+  clearBtn.textContent = '🧹 清除所有 Bug!';
+  clearBtn.addEventListener('click', function() {
+    document.querySelectorAll('.bug-item, .bug-msg, .bug-overlay').forEach(function(el) { el.remove(); });
+    clearBtn.remove();
+  });
+  document.body.appendChild(clearBtn);
+});
 </script>
 </body>
 </html>
