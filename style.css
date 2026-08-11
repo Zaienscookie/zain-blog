@@ -431,32 +431,21 @@ body.lang-fade { animation: langFade .25s ease; }
 .cat-widget { position: relative; }
 .widget-cat {
   position: absolute;
-  top: -44px;
+  top: -46px;
   right: -2px;
   z-index: 10;
   pointer-events: none;
-  animation: cat-breathe 2.5s ease-in-out infinite;
+  animation: cat-breathe 3s ease-in-out infinite;
 }
-.cat-svg { display: block; }
-.cat-tail {
-  transform-origin: 58px 24px;
-  animation: cat-wag 2s ease-in-out infinite;
-  transform-box: fill-box;
-}
-.cat-eye.left { transform-origin: 18px 20px; animation: cat-blink 3.5s ease-in-out infinite; }
-.cat-eye.right { transform-origin: 27px 20px; animation: cat-blink 3.5s ease-in-out infinite 0.1s; }
-@keyframes cat-wag {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(8deg); }
-  75% { transform: rotate(-6deg); }
+.cat-img {
+  display: block;
+  width: 90px;
+  height: auto;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.35));
 }
 @keyframes cat-breathe {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-2px); }
-}
-@keyframes cat-blink {
-  0%, 88%, 100% { transform: scaleY(1); }
-  94% { transform: scaleY(0.1); }
+  50% { transform: translateY(-3px); }
 }
 .widget ul { list-style: none; width: 100%; display: inline-block; text-align: center; }
 .widget li { padding: 5px 0; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,.03); }
