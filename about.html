@@ -192,6 +192,16 @@ function flipAvatar() {
     s.classList.add("flipped");
   }
 })();
+// 页面加载后提示头像可翻转
+(function(){
+  var s = document.getElementById('avatarStack');
+  if (s && !s.classList.contains('flipped')) {
+    setTimeout(function(){
+      s.classList.add('flipped');
+      setTimeout(function(){ s.classList.remove('flipped'); }, 2000);
+    }, 1300);
+  }
+})();
 
 </script>
 

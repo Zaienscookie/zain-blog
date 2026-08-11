@@ -109,6 +109,16 @@ function flipAvatar() {
   setTimeout(function(){ if(!s.classList.contains('flipped')){ s.classList.remove('flipped'); } }, 4000);
 }
 (function(){ if(localStorage.getItem('avatarFlipped')==='1'){ document.getElementById('avatarStack').classList.add('flipped'); } })();
+// 页面加载后提示头像可翻转
+(function(){
+  var s = document.getElementById('avatarStack');
+  if (s && !s.classList.contains('flipped')) {
+    setTimeout(function(){
+      s.classList.add('flipped');
+      setTimeout(function(){ s.classList.remove('flipped'); }, 2000);
+    }, 1300);
+  }
+})();
 window.addEventListener('DOMContentLoaded', function(){
   var min = document.querySelector('.main');
   if(min){ min.style.minHeight = (window.innerHeight-40)+'px'; }
