@@ -112,12 +112,17 @@ function flipAvatar() {
 // 页面加载后提示头像可翻转
 (function(){
   var s = document.getElementById('avatarStack');
-  if (s && !s.classList.contains('flipped') && !localStorage.getItem('avatarHintShown')) {
-    localStorage.setItem('avatarHintShown', '1');
-    setTimeout(function(){
-      s.classList.add('flipped');
-      setTimeout(function(){ s.classList.remove('flipped'); }, 2000);
-    }, 1300);
+  if (s && !s.classList.contains('flipped')) {
+    var nav = performance.getEntriesByType('navigation')[0];
+    var isReload = nav && nav.type === 'reload';
+    var isInternal = document.referrer && document.referrer.startsWith(window.location.origin);
+    // 刷新时展示，或非内部导航时展示（首次进入、外部链接进入）
+    if (isReload || !isInternal) {
+      setTimeout(function(){
+        s.classList.add('flipped');
+        setTimeout(function(){ s.classList.remove('flipped'); }, 2000);
+      }, 1300);
+    }
   }
 })();
 window.addEventListener('DOMContentLoaded', function(){
