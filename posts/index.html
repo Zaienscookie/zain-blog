@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body class="lang-zh">
+<body class="lang-ru">
 <div class="container">
 
   <!-- Left Sidebar -->
@@ -28,7 +28,7 @@
       <div class="site-description"><span class="zh">云计算 / 全栈开发者</span><span class="en">Cloud / Full-Stack</span>
             <span class="ru">Облачный / Full-Stack</span></div>
             <div class="lang-bar">
-        <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
+        <button class="lang-btn" onclick="toggleLang()" id="langBtn">中</button>
       </div>
           <div class="social">
         <a href="https://github.com/Zaienscookie" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -234,9 +234,9 @@ function toggleLang() {
       document.body.classList.remove('lang-zh'); document.body.classList.add('lang-ru');
       btn.textContent = '中';
     } else {
-      document.body.classList.remove('lang-en'); document.body.classList.remove('lang-ru');
-      document.body.classList.add('lang-zh');
-      btn.textContent = 'EN';
+      document.body.classList.remove('lang-zh'); document.body.classList.remove('lang-en');
+      document.body.classList.add('lang-ru');
+      btn.textContent = '中';
     }
   }
 })();
