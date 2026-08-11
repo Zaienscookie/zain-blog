@@ -373,7 +373,7 @@ document.getElementById('easterEggBtn').addEventListener('click', function() {
   overlay.className = 'bug-overlay active';
   document.body.appendChild(overlay);
   
-  var msgs = ['软件工程师的电子小宠物', '你这程序有 Bug 啊'];
+  var msgs = ['软件工程师的电子小宠物', '这程序有"Bug"啊'];
   var msg = msgs[Math.floor(Math.random() * msgs.length)];
   var msgEl = document.createElement('div');
   msgEl.className = 'bug-msg';
@@ -409,7 +409,7 @@ document.getElementById('easterEggBtn').addEventListener('click', function() {
   // 清除按钮
   var clearBtn = document.createElement('button');
   clearBtn.className = 'bug-clear-btn';
-  clearBtn.textContent = '🧹 清除所有 Bug!';
+  clearBtn.textContent = '[ 清除所有 Bug ]';
   clearBtn.addEventListener('click', function() {
     document.querySelectorAll('.bug-item, .bug-msg, .bug-overlay').forEach(function(el) { el.remove(); });
     clearBtn.remove();
