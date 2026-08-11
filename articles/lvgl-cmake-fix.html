@@ -234,17 +234,41 @@ window.addEventListener('DOMContentLoaded', function(){
   if(min){ min.style.minHeight = (window.innerHeight-40)+'px'; }
 });
 
-function toggleLang(){
-  var b = document.body;
-  var en = b.classList.contains('lang-en');
-  var ru = b.classList.contains('lang-ru');
+function toggleLang() {
+  var body = document.body;
   var btn = document.getElementById('langBtn');
-  if(en){ b.className='lang-ru'; btn.textContent='中'; }
-  else if(ru){ b.className='lang-zh'; btn.textContent='EN'; }
-  else { b.className='lang-en'; btn.textContent='РУ'; }
-  localStorage.setItem('lang', b.className.replace('lang-',''));
+  body.classList.add('lang-fade');
+  setTimeout(function() {
+    if (body.classList.contains('lang-zh')) {
+      body.classList.remove('lang-zh'); body.classList.add('lang-en'); btn.textContent = 'RU';
+      localStorage.setItem('blog-lang', 'en');
+    } else if (body.classList.contains('lang-en')) {
+      body.classList.remove('lang-en'); body.classList.add('lang-ru'); btn.textContent = '中';
+      localStorage.setItem('blog-lang', 'ru');
+    } else {
+      body.classList.remove('lang-ru'); body.classList.add('lang-zh'); btn.textContent = 'EN';
+      localStorage.setItem('blog-lang', 'zh');
+    }
+    body.classList.remove('lang-fade');
+  }, 120);
 }
-(function(){ var l=localStorage.getItem('lang'); if(l==='en'){document.body.className='lang-en';document.getElementById('langBtn').textContent='РУ';} else if(l==='ru'){document.body.className='lang-ru';document.getElementById('langBtn').textContent='中';} })();
+(function() {
+  var saved = localStorage.getItem('blog-lang');
+  var btn = document.getElementById('langBtn');
+  if (btn) {
+    if (saved === 'en') {
+      document.body.classList.remove('lang-zh'); document.body.classList.add('lang-en');
+      btn.textContent = 'RU';
+    } else if (saved === 'ru') {
+      document.body.classList.remove('lang-zh'); document.body.classList.add('lang-ru');
+      btn.textContent = '中';
+    } else {
+      document.body.classList.remove('lang-en'); document.body.classList.remove('lang-ru');
+      document.body.classList.add('lang-zh');
+      btn.textContent = 'EN';
+    }
+  }
+})();
 </script>
 </body>
 </html>
