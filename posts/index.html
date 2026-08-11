@@ -16,7 +16,7 @@
   <!-- Left Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-inner">
-      <div class="avatar-stack" id="avatarStack" onclick="flipAvatar()">
+      <div class="avatar-stack" id="avatarStack">
   <div class="avatar-card card-front">
     <img src="../img/avatar.jpg" alt="zain" class="avatar-img">
   </div>
@@ -182,35 +182,6 @@
 </div>
 <script>
 
-function flipAvatar() {
-  var s = document.getElementById('avatarStack');
-  s.classList.toggle('flipped');
-  localStorage.setItem('avatarFlipped', s.classList.contains('flipped') ? '1' : '0');
-}
-
-// 恢复翻牌状态
-(function() {
-  var s = document.getElementById('avatarStack');
-  if (s && localStorage.getItem('avatarFlipped') === '1') {
-    s.classList.add('flipped');
-  }
-})();
-// 页面加载后提示头像可翻转
-(function(){
-  var s = document.getElementById('avatarStack');
-  if (s && !s.classList.contains('flipped')) {
-    var nav = performance.getEntriesByType('navigation')[0];
-    var isReload = nav && nav.type === 'reload';
-    var isInternal = document.referrer && document.referrer.startsWith(window.location.origin);
-    // 刷新时展示，或非内部导航时展示（首次进入、外部链接进入）
-    if (isReload || !isInternal) {
-      setTimeout(function(){
-        s.classList.add('flipped');
-        setTimeout(function(){ s.classList.remove('flipped'); }, 2000);
-      }, 1300);
-    }
-  }
-})();
 function toggleLang() {
   var body = document.body;
   var btn = document.getElementById('langBtn');
